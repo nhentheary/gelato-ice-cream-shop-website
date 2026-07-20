@@ -1,0 +1,43 @@
+/* =========================================
+   Global Responsive Breakpoints (3 Tiers)
+   ========================================= */
+
+/* --- Tier 1: Phone Screen Range (0px to 767px) --- */
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr; /* Single column on phones */
+  }
+}
+
+/* --- Tier 2: Tablet Screen Range (768px to 1023px) --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: 720px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+/* --- Tier 3: Desktop Screen Range (1024px and above) --- */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktops */
+  }
+}

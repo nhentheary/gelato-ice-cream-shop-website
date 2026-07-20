@@ -1,0 +1,94 @@
+    /* =========================================
+    Scoopify Product Card Component
+    ========================================= */
+
+    .product-card {
+    background-color: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-gray, #e5e7eb);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Card Image Wrapper with Rounded Corners */
+    .card-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: var(--pastel-pink, #fdf2f4);
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    }
+
+    .card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .card-img-wrapper img {
+    transform: scale(1.05);
+    }
+
+    /* Optional Badge Style (Fully Rounded / Pill Shaped) */
+    .card-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: var(--primary, #d946ef);
+    color: var(--pastel-pink, #fdf2f4);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;
+    z-index: 2;
+    }
+
+    /* Card Content Details */
+    .card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    }
+
+    .card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main, #1f2937);
+    margin-bottom: 8px;
+    }
+
+    .card-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted, #6b7280);
+    margin-bottom: 16px;
+    flex-grow: 1;
+    line-height: 1.4;
+    }
+
+    /* Footer of the Card (Price + Button) */
+    .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    }
+
+    .card-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary, #d946ef);
+    }

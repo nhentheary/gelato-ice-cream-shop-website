@@ -1,0 +1,70 @@
+    /* =========================================
+    Scoopify Menu & Catalog Component
+    ========================================= */
+
+    /* Category Filter Buttons Bar */
+    .menu-filters {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    scrollbar-width: none; /* Hide scrollbar for clean look */
+    }
+
+    .menu-filters::-webkit-scrollbar {
+    display: none;
+    }
+
+    .filter-btn {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-gray);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+    background-color: var(--primary);
+    color: var(--pastel-pink);
+    border-color: var(--primary);
+    }
+
+    /* Product Catalog Grid Layout (Base / Mobile: 1 Column) */
+    .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    }
+
+    /* =========================================
+    Responsive Grid Adjustments
+    ========================================= */
+
+    /* --- Phone Screen Range (0px to 767px): 1 Column --- */
+    @media (max-width: 767px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    }
+
+    /* --- Tablet Screen Range (768px to 1023px): 3 Columns --- */
+    @media (min-width: 768px) and (max-width: 1023px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    }
+
+    /* --- Desktop Screen Range (1024px and above): 4 Columns --- */
+    @media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    }

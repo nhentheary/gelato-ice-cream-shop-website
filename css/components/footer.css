@@ -1,4 +1,4 @@
-    /* =========================================
+/* =========================================
     Scoopify Footer Component
     ========================================= */
 
@@ -14,42 +14,106 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 16px;
     }
 
     .footer-columns-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     }
 
     .footer-col:first-child {
-    grid-column: span 2;
+    grid-column: span 1;
+    }
+
+    /* Footer Logo Styles (Matching Navbar pattern) */
+    .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+    margin-bottom: 16px;
+    width: fit-content;
+    }
+
+    .footer-logo:hover {
+    text-decoration: none !important;
+    }
+
+    .footer-logo-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    }
+
+    .footer-logo:hover .footer-logo-icon {
+    transform: scale(1.1);
+    }
+
+    .footer-logo-text {
+    font-family: 'Baloo 2', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px var(--border-gray);
+    color: var(--primary);
+    text-decoration: none !important;
+    display: inline-block;
+    transition: transform 0.2s ease;
+    }
+
+    .footer-logo:hover .footer-logo-text {
+    transform: scale(1.05);
+    color: var(--primary);
+    text-decoration: none !important;
     }
 
     .footer-col h3,
-    .footer-col h4 {
+    .footer-col h4,
+    .footer-heading {
     font-family: 'Baloo 2', cursive;
     font-size: 18px;
     font-weight: 600;
     color: var(--primary);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     }
 
-    .footer-col p {
+    .footer-col p,
+    .footer-bio {
     font-size: 14px;
     color: var(--text-sub);
     line-height: 1.6;
     margin-bottom: 16px;
     }
 
+    /* Social icons layout */
+    .footer-socials {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    }
+
+    .footer-socials a {
+    color: var(--text-main);
+    font-size: 20px;
+    transition: color 0.2s ease;
+    text-decoration: none;
+    }
+
+    .footer-socials a:hover {
+    color: var(--primary);
+    }
+
     .footer-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
     }
 
     .footer-links a {
@@ -59,23 +123,58 @@
     transition: color 0.2s ease;
     }
 
+    /* Footer links hover style matching navbar (color change only, no underline) */
     .footer-links a:hover {
     color: var(--primary);
+    text-decoration: none;
     }
 
-    .footer-divider {
-    width: 100%;
-    height: 1px;
-    background-color: var(--border-gray);
-    border: none;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    /* Contact List Styles for Column 4 */
+    .footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    }
+
+    .footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-sub);
+    }
+
+    .footer-contact-list i {
+    color: var(--primary);
+    font-size: 16px;
+    margin-top: 2px;
     }
 
     .footer-bottom {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-gray);
     text-align: center;
     font-size: 13px;
     color: var(--text-sub);
+    display: flex;
+    justify-content: center;
+    }
+
+    .footer-bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    }
+
+    .footer-bottom-links a:hover {
+    color: var(--primary);
     }
 
     /* =========================================
@@ -89,11 +188,16 @@
     }
 
     .footer-columns-wrapper {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .footer-col:first-child {
-        grid-column: span 2;
+        grid-column: span 1;
+    }
+    
+    .footer-bottom-container {
+        flex-direction: column;
+        text-align: center;
     }
     }
 
@@ -119,7 +223,7 @@
     }
 
     .footer-columns-wrapper {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
     }
 
     .footer-col:first-child {

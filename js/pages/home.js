@@ -42,3 +42,47 @@ document.addEventListener("DOMContentLoaded", () => {
     // Sets the interval to run every 4 seconds of pause time plus transition time
     setInterval(moveToNextSlide, 5200);
 });
+
+// JavaScript for Dynamic Scrolling, Dot Tracking, and Card Scaling //
+const grid = document.querySelector('.categories-grid');
+    const dots = document.querySelectorAll('.scroll-dots .dot');
+    const cards = document.querySelectorAll('.category-card');
+
+    if (grid && dots.length > 0 && cards.length > 0) {
+        grid.addEventListener('scroll', () => {
+            const scrollLeft = grid.scrollLeft;
+            const cardWidth = cards[0].offsetWidth + 15; // card width + gap
+            const index = Math.round(scrollLeft / cardWidth);
+
+            // Update active dot
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+
+            // Update active card animation/scale
+            cards.forEach((card, i) => {
+                card.classList.toggle('active-card', i === index);
+            });
+        });
+    }
+
+
+const bsGrid = document.querySelector('.bestsellers-grid');
+    const bsDots = document.querySelectorAll('.bestsellers-section .scroll-dots .dot');
+    const bsCards = document.querySelectorAll('.bestseller-card');
+
+    if (bsGrid && bsDots.length > 0 && bsCards.length > 0) {
+        bsGrid.addEventListener('scroll', () => {
+            const scrollLeft = bsGrid.scrollLeft;
+            const cardWidth = bsCards[0].offsetWidth + 15;
+            const index = Math.round(scrollLeft / cardWidth);
+
+            bsDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+
+            bsCards.forEach((card, i) => {
+                card.classList.toggle('active-card', i === index);
+            });
+        });
+    }

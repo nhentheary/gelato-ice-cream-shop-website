@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scoopify - Home</title>
+    <title>GELATO - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="css/global.css">
@@ -18,42 +18,99 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="navbar-logo">
-            <img src="assets/images/GELATO-Logo.png" alt="" class="navbar-logo-icon">
-            <span class="navbar-logo-text">GELATO</span>
-        </a>
-        
-
-        <div class="navbar-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="menu.html">Menu</a>
-            <a href="catering.html">Catering</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+        <div class="container navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="assets/images/logo/GELATO-Logo.png" alt="" class="navbar-logo-icon">
+                <span class="navbar-logo-text">GELATO</span>
+            </a>
             
-        </div>
 
-        <div class="navbar-icons">
-            <div class="navbar-search">
-                <input type="text" placeholder="Search...">
-                <i class="ti ti-search"></i>
+            <div class="navbar-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="catering.html">Catering</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                
             </div>
-            <a href="cart.html" style="position:relative;">
-                <i class="ti ti-shopping-cart"></i>
-                <span class="cart-badge" style="display:inline-block;">0</span>
-            </a>
-            <a href="account.html">
-                <div class="navbar-profile">
-                    <i class="ti ti-user"></i>
-                </div>
-            </a>
-        </div>
 
-        <button class="hamburger" aria-label="Toggle navigation menu">
-            <span></span><span></span><span></span>
-        </button>
+            <div class="navbar-icons">
+                <div class="navbar-search">
+                    <input type="text" placeholder="Search...">
+                    <i class="ti ti-search"></i>
+                </div>
+                <a href="cart.html" style="position:relative;">
+                    <i class="ti ti-shopping-cart"></i>
+                    <span class="cart-badge" style="display:inline-block;">0</span>
+                </a>
+                <a href="account.html">
+                    <div class="navbar-profile">
+                        <i class="ti ti-user"></i>
+                    </div>
+                </a>
+            </div>
+
+            <button class="hamburger" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
     <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <!-- Left Content -->
+                    <div class="hero-content">
+                        <div class="hero-subtitle-top">
+                            ♥ Scoop Happiness ♥
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            <span class="line-1">
+                                <span class="dark-word">in</span> <span class="highlight-3d">Every</span>
+                            </span>
+                            <span class="line-2">
+                                <span class="highlight-3d">Bite</span> <span class="dark-word">♥</span>
+                            </span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Crafted with the finest real ingredients, <br> designed to turn simple moments into <br> <span>unforgettable indulgence.</span>
+                        </p>
+                        
+                        <div class="hero-buttons">
+                            <a href="menu.html" class="btn btn-primary interactive btn-text">
+                                Order Now
+                            </a>
+                            <a href="flavors.html" class="btn btn-secondary interactive btn-text">
+                                Explore Flavors
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Hero Slideshow -->
+                    <div class="hero-image-wrapper" id="heroSlideshow">
+                        <div class="hero-track" id="heroTrack">
+                            <!-- Original Set (1, 2, 3, 4, 5, 6) -->
+                            <img src="assets/images/hero/home-hero-1.png" alt="Ice Cream 1" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-2.png" alt="Ice Cream 2" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-3.png" alt="Ice Cream 3" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-4.png" alt="Ice Cream 4" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-5.png" alt="Ice Cream 5" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-6.png" alt="Ice Cream 6" class="hero-slide">
+                            
+                            <!-- Exact Duplicate Set for Seamless Infinite Loop (1, 2, 3, 4, 5, 6) -->
+                            <img src="assets/images/hero/home-hero-1.png" alt="Duplicate Ice Cream 1" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-2.png" alt="Duplicate Ice Cream 2" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-3.png" alt="Duplicate Ice Cream 3" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-4.png" alt="Duplicate Ice Cream 4" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-5.png" alt="Duplicate Ice Cream 5" class="hero-slide">
+                            <img src="assets/images/hero/home-hero-6.png" alt="Duplicate Ice Cream 6" class="hero-slide">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -67,7 +124,7 @@
                 <!-- Col 1: Brand & Bio -->
                 <div class="footer-col footer-brand">
                     <a href="index.html" class="footer-logo">
-                        <img src="assets/images/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
+                        <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
                         <span class="footer-logo-text">GELATO</span>
                     </a>
                     <p class="body-text footer-bio">
@@ -127,5 +184,6 @@
     </footer>
     
 </body>
+<script src="js/pages/home.js"></script>
 
 </html>

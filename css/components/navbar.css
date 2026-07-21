@@ -3,6 +3,15 @@
     ========================================= */
 
     .navbar {
+    width: 100%;
+    background-color: var(--bg-warm);
+    border-bottom: 1px solid var(--border-gray);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+
+    .navbar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,11 +19,6 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 24px;
-    background-color: var(--card-bg);
-    border-bottom: 1px solid var(--border-gray);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     width: 100%;
     }
 
@@ -96,13 +100,11 @@
     .navbar-links a:hover {
     color: var(--primary);
     text-decoration: none !important;
-    
     }
 
     .navbar-links a.active {
     color: var(--primary);
     text-decoration: none;
-    
     }
 
     /* 3. Right Icons & Actions */

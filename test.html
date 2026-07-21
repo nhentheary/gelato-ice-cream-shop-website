@@ -3,105 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scoopify - Premium Ice Cream</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <title>GELATO - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <style>
         /* =========================================
-            Scoopify Design Tokens (High Contrast Text)
-            ========================================= */
-
+           Design Tokens & Base Styles
+           ========================================= */
         :root {
             --primary: #B04358;
-            --primary-hover: #9A384C;
-            --accent-pink: #FFD1DC; 
-            --pastel-pink: #F4C9D3;
-            
-            --bg-deep: #5C2430; 
-            --bg-gradient: radial-gradient(circle at 50% -20%, #8B3648 0%, var(--bg-deep) 100%);
-            
+            --primary-hover: #963548;
+            --text-high-contrast: #2D2325;
+            --text-sub-dark: #665558;
             --text-white: #FFFFFF;
-            --text-high-contrast: #3A121A; 
-            --text-sub-dark: #4A1E26;     
-            
-            --card-bg: #FFFFFF;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--bg-deep);
             font-family: 'Poppins', sans-serif;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            background-color: #FAF8F8;
+            color: var(--text-high-contrast);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* =========================================
-            Typography (Optimized for Visibility)
-            ========================================= */
+           Navbar & Side Panel Styles
+           ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(250, 248, 248, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(176, 67, 88, 0.1);
+        }
 
-        h1, .h1 {
-            font-family: 'Baloo 2', cursive;
-            font-size: 48px;
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
             font-weight: 700;
-            line-height: 1.1;
-            color: var(--text-high-contrast); 
+            color: var(--primary);
         }
 
-        p, .body-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--text-sub-dark); 
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
         }
 
-        .btn-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
+        .navbar-links a {
+            text-decoration: none;
+            color: var(--text-high-contrast);
             font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .caption {
+        .navbar-links a:hover,
+        .navbar-links a.active {
+            color: var(--primary);
+        }
+
+        .navbar-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-search {
+            display: flex;
+            align-items: center;
+            background: #FFF;
+            border: 1px solid rgba(176, 67, 88, 0.2);
+            border-radius: 50px;
+            padding: 5px 15px;
+            gap: 8px;
+        }
+
+        .navbar-search input {
+            border: none;
+            outline: none;
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
-            font-weight: 500;
-            color: var(--text-sub-dark); 
+            background: transparent;
+            width: 120px;
         }
 
-        /* Container */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 20px;
-            padding-right: 20px;
+        .navbar-icons a {
+            color: var(--text-high-contrast);
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        /* States */
-        .interactive {
+        .navbar-icons a:hover {
+            color: var(--primary) !important;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        /* Hamburger Toggle Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            z-index: 1001;
         }
-        .interactive:active {
-            transform: scale(0.98);
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--text-high-contrast);
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
 
         /* =========================================
-            Hero Section
-            ========================================= */
-
+           Hero Section Styles
+           ========================================= */
         .hero-section {
             position: relative;
             width: 100%;
@@ -112,7 +169,7 @@
                 radial-gradient(circle at 85% 20%, rgba(238, 171, 192, 0.45) 0%, transparent 45%),
                 radial-gradient(circle at 10% 90%, rgba(244, 201, 211, 0.35) 0%, transparent 40%),
                 linear-gradient(135deg, #FAF8F8 0%, #FFF2F4 100%);
-            padding: 100px 0;
+            padding: 140px 0 100px 0;
             overflow: hidden;
         }
 
@@ -125,36 +182,74 @@
             align-items: center;
         }
 
-        /* Left Content */
         .hero-content {
-            max-width: 550px;
+            max-width: 600px;
+        }
+
+        .hero-subtitle-top {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 10px;
         }
 
         .hero-title {
-            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--text-high-contrast);
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .hero-title .highlight {
-            color: var(--primary); 
+        .hero-title .line-1 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: rotate(-2deg);
+            transform-origin: left center;
         }
 
-        .hero-title .heart-icon {
+        .hero-title .line-2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: rotate(2deg);
+            transform-origin: left center;
+            margin-left: 15px;
+        }
+
+        .hero-title .dark-word {
+            color: var(--text-high-contrast);
+            text-shadow: 3px 3px 0px #FFFFFF, 6px 6px 0px rgba(176, 67, 88, 0.15);
+        }
+
+        .hero-title .highlight-3d {
             color: var(--primary);
-            vertical-align: middle;
-            font-size: 0.9em;
+            text-shadow: 3px 3px 0px #FFFFFF, 6px 6px 0px rgba(92, 36, 48, 0.25);
+            display: inline-block;
         }
 
         .hero-description {
-            margin-bottom: 40px;
-            font-size: 18px;
-            font-weight: 400;
+            font-size: 16px;
+            color: var(--text-sub-dark);
+            line-height: 1.7;
+            margin-bottom: 35px;
         }
 
-        /* Buttons */
+        .hero-description span {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
         .hero-buttons {
             display: flex;
             gap: 20px;
-            margin-bottom: 60px;
         }
 
         .btn {
@@ -165,13 +260,13 @@
             border-radius: 100px;
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         .btn-primary {
             background-color: var(--primary);
             color: #FFFFFF;
-            font-weight: 600;
             box-shadow: 0 4px 15px rgba(176, 67, 88, 0.3);
         }
 
@@ -181,182 +276,247 @@
 
         .btn-secondary {
             background-color: rgba(92, 36, 48, 0.06);
-            border-color: var(--primary);
+            border: 2px solid var(--primary);
             color: var(--primary);
-            font-weight: 600;
         }
 
         .btn-secondary:hover {
             background-color: rgba(176, 67, 88, 0.1);
         }
 
-        /* =========================================
-            Continuous Marquee with 4s Pause Steps
-            ========================================= */
-        
         .hero-image-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            height: 600px; 
+            height: 500px;
             width: 100%;
-            /* Soft fade mask on the left and right margins so photos blend out smoothly */
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-            overflow: hidden; 
+            background: radial-gradient(circle, rgba(176, 67, 88, 0.12) 0%, transparent 70%);
+            border-radius: 30px;
         }
 
-        /* Decorative glow behind photos */
-        .hero-image-wrapper::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(176, 67, 88, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        /* The moving track holding the looped photos continuously */
         .hero-track {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            /* Smooth cubic-bezier transition handles the sliding steps cleanly */
-            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform;
-            z-index: 2;
-        }
-
-        .hero-slide {
-            flex-shrink: 0;
-            width: 450px;
-            height: 500px;
-            object-fit: contain;
-            margin-right: 80px; 
-            filter: drop-shadow(0 20px 30px rgba(92, 36, 48, 0.3));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         /* =========================================
-            Responsive Adaptation
-            ========================================= */
+           Responsive / Phone Screen Only (max-width: 576px)
+           ========================================= */
+        @media (min-width: 577px) {
+            /* Hides hamburger and side-panel on tablets and desktops */
+            .hamburger {
+                display: none !important;
+            }
+        }
 
-        @media (max-width: 992px) {
-            h1, .h1 { font-size: 40px; }
+        @media (max-width: 576px) {
+            /* Show hamburger button ONLY on phone screens */
+            .hamburger {
+                display: flex;
+            }
+
+            .navbar-search {
+                display: none; 
+            }
+
+            /* Slide-in Side Panel from Left to Right */
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                left: -100%; /* Hidden completely off-screen to the left */
+                width: 280px; /* Panel width */
+                height: 100vh; /* Full viewport height */
+                background-color: #FAF8F8;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px 30px 30px;
+                gap: 25px;
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                z-index: 999;
+            }
+
+            /* Active state triggers slide-in */
+            .navbar-links.active {
+                left: 0;
+            }
+
+            /* Styling and hover effects for links inside the mobile menu panel */
+            .navbar-links a {
+                font-size: 18px;
+                width: 100%;
+                padding: 8px 12px;
+                border-radius: 8px;
+                transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            }
+
+            .navbar-links a:hover,
+            .navbar-links a.active {
+                background-color: rgba(176, 67, 88, 0.1);
+                color: #9A384C; /* Updated hover & active text color */
+                transform: translateX(6px); /* Subtle slide-right effect on hover */
+            }
+
+            /* Hamburger animation when active */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
             .hero-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
                 text-align: center;
-                justify-items: center;
             }
-            .hero-content { max-width: 700px; }
-            .hero-buttons { justify-content: center; }
-            .hero-section { padding: 80px 0; }
-            .hero-image-wrapper { height: 450px; }
-            .hero-slide { width: 320px; height: 380px; margin-right: 50px; }
-        }
 
-        @media (max-width: 576px) {
-            h1, .h1 { font-size: 32px; }
-            .hero-description { font-size: 16px; }
-            .btn { padding: 12px 24px; width: 100%; }
-            .hero-buttons { flex-direction: column; width: 100%; gap: 12px; }
-            .hero-image-wrapper { height: 300px; }
-            .hero-slide { width: 240px; height: 260px; margin-right: 30px; }
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                align-items: center;
+            }
+
+            .hero-title .line-1, 
+            .hero-title .line-2 {
+                transform: none;
+                margin-left: 0;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-grid">
-                <!-- Left Content -->
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Scoop Happiness<br>
-                        in <span class="highlight">Every Bite</span> 
-                        <span class="heart-icon">♥</span>
-                    </h1>
-                    <p class="hero-description">
-                        Crafted with the finest real ingredients. Indulge in premium flavors designed to make your moments sweeter.
-                    </p>
-                    
-                    <div class="hero-buttons">
-                        <a href="menu.html" class="btn btn-primary interactive btn-text">
-                            Order Now
-                        </a>
-                        <a href="flavors.html" class="btn btn-secondary interactive btn-text">
-                            Explore Flavors
-                        </a>
-                    </div>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <span class="navbar-logo-text">GELATO</span>
+            </a>
+            
+            <!-- Side Panel Links (Controlled by id="navLinks") -->
+            <div class="navbar-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="catering.html">Catering</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
 
-                <!-- Right Column: Marquee with Stop-and-Go Interval -->
-                <div class="hero-image-wrapper" id="heroSlideshow">
-                    <div class="hero-track" id="heroTrack">
-                        <!-- Original Set (1, 2, 3) -->
-                        <img src="https://i.ibb.co/3Y8V9P5/premium-ice-cream-png.png" alt="Premium Ice Cream 1" class="hero-slide">
-                        <img src="https://i.ibb.co/3Y8V9P5/premium-ice-cream-png.png" alt="Premium Ice Cream 2" class="hero-slide">
-                        <img src="https://i.ibb.co/3Y8V9P5/premium-ice-cream-png.png" alt="Premium Ice Cream 3" class="hero-slide">
+            <div class="navbar-icons">
+                <div class="navbar-search">
+                    <input type="text" placeholder="Search...">
+                    <i class="ti ti-search"></i>
+                </div>
+                <a href="cart.html" style="position:relative;" aria-label="Cart">
+                    <i class="ti ti-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <a href="account.html" aria-label="Account">
+                    <div class="navbar-profile">
+                        <i class="ti ti-user"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Hamburger Button (Controlled by id="hamburgerBtn") -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-subtitle-top">
+                            ♥ Scoop Happiness ♥
+                        </div>
                         
-                        <!-- Exact Duplicate Set for Seamless Infinite Loop (1, 2, 3) -->
-                        <img src="https://i.ibb.co/3Y8V9P5/premium-ice-cream-png.png" alt="Premium Ice Cream 1 Duplicate" class="hero-slide">
-                        <img src="https://i.ibb.co/3Y8V9P5/premium-ice-cream-png.png" alt="Premium Ice Cream 2 Duplicate" class="hero-slide">
-                        <img src="https://i.ibb.co/3Y8V9P5/premium-ice-cream-png.png" alt="Premium Ice Cream 3 Duplicate" class="hero-slide">
+                        <h1 class="hero-title">
+                            <span class="line-1">
+                                <span class="dark-word">in</span> <span class="highlight-3d">Every</span>
+                            </span>
+                            <span class="line-2">
+                                <span class="highlight-3d">Bite</span> <span class="dark-word">♥</span>
+                            </span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Crafted with the finest real ingredients, <br> designed to turn simple moments into <br> <span>unforgettable indulgence.</span>
+                        </p>
+                        
+                        <div class="hero-buttons">
+                            <a href="menu.html" class="btn btn-primary">
+                                Order Now
+                            </a>
+                            <a href="flavors.html" class="btn btn-secondary">
+                                Explore Flavors
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-image-wrapper">
+                        <div class="hero-track">
+                            Gelato Showcase Area 🍨
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- JavaScript to pause for 4s, step to the next photo, and repeat seamlessly -->
+    <!-- JavaScript for Mobile Slide-in Panel Toggle -->
     <script>
-        const track = document.getElementById('heroTrack');
-        const slides = track.querySelectorAll('.hero-slide');
-        let currentIndex = 0;
-        const totalItems = 3; // Number of unique slides before duplication
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+            const navItems = document.querySelectorAll('.navbar-links a');
 
-        function getSlideStep() {
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            const computedStyle = window.getComputedStyle(slides[0]);
-            const marginRight = parseFloat(computedStyle.marginRight);
-            return slideWidth + marginRight;
-        }
+            if (!hamburgerBtn || !navLinks) return;
 
-        function moveToNextSlide() {
-            currentIndex++;
-            const step = getSlideStep();
-            track.style.transform = `translateY(-50%) translateX(-${currentIndex * step}px)`;
+            const toggleMenu = () => {
+                hamburgerBtn.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            };
 
-            // When it reaches the duplicate set, instantly reset back to the start without animation
-            if (currentIndex === totalItems) {
-                setTimeout(() => {
-                    track.style.transition = 'none';
-                    currentIndex = 0;
-                    track.style.transform = `translateY(-50%) translateX(0px)`;
-                    
-                    // Re-enable smooth transition after reset frame
-                    setTimeout(() => {
-                        track.style.transition = 'transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
-                    }, 50);
-                }, 1200); // Matches the 1.2s transition time
-            }
-        }
+            const closeMenu = () => {
+                hamburgerBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            };
 
-        // Sets the interval to run every 4 seconds of pause time plus transition time
-        setInterval(moveToNextSlide, 5200);
+            hamburgerBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            navItems.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close panel when clicking outside of it
+            document.addEventListener('click', (e) => {
+                const isClickInside = navLinks.contains(e.target) || hamburgerBtn.contains(e.target);
+                if (!isClickInside && navLinks.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+        });
     </script>
-
 </body>
 </html>

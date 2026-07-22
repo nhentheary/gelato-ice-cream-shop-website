@@ -481,42 +481,45 @@
     }
 }
 
-
 /* =========================================
-    Best Sellers Section Styles (Global Aligned)
-    ========================================= */
+   Best Sellers Section Styles (Home Page)
+   ========================================= */
 
 .bestsellers-section {
     padding: 80px 0;
     overflow: hidden;
 }
 
-/* Section Header Layout with "View All" on Top Right */
+/* Section Header */
 .bestsellers-section .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    text-align: center;
     margin-bottom: 40px;
     max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px;
     box-sizing: border-box;
+    display: block;
 }
 
 .bestsellers-section .view-all-link {
-    font-size: 14px;
+    display: none;
+}
+
+.bestseller-card .product-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
     font-weight: 600;
-    color: var(--primary, #d81b60);
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.bestseller-card .product-name:hover{
+    color: var(--primary);
     text-decoration: none;
-    transition: opacity 0.2s ease;
 }
 
-.bestsellers-section .view-all-link:hover {
-    opacity: 0.8;
-}
-
-/* Base Desktop Grid: 5 Cards Layout */
+/* Desktop Grid: 5 Cards Layout */
 .bestsellers-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -527,15 +530,15 @@
     box-sizing: border-box;
 }
 
-/* Synchronized Card Size, Background, and Hover with Global Design */
+/* Card Container */
 .bestseller-card {
     background-color: #FFFFFF;
     border: 1px solid var(--border-gray, #eee);
     border-radius: 24px;
-    padding: 25px 15px;
-    text-align: left; /* Aligns product details neatly */
+    padding: 16px 14px;
+    text-align: left;
     text-decoration: none;
-    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     display: flex;
     flex-direction: column;
@@ -550,35 +553,189 @@
     box-shadow: 0 12px 30px rgba(176, 67, 88, 0.12);
 }
 
+/* Image Background Wrapper */
+.bestseller-card .card-image-wrapper {
+    width: 100%;
+    height: 150px;
+    border-radius: 16px;
+    background: radial-gradient(circle, rgba(238, 171, 192, 0.35) 0%, rgba(244, 201, 211, 0.1) 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.bestseller-card .card-image-wrapper img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.bestseller-card:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Wishlist Icon States */
+.bestseller-card .wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    z-index: 3;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* i. Default State: Gray/No fill outline */
+.bestseller-card .wishlist-btn i {
+    color: var(--text-sub, #7A7A7A);
+    font-size: 16px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* ii. Hover State: Changes color and slightly scales */
+.bestseller-card .wishlist-btn:hover {
+    transform: scale(1.1);
+    background-color: #FFF0F3;
+}
+
+.bestseller-card .wishlist-btn:hover i {
+    color: var(--primary);
+}
+
+/* iii. Clicked / Active State: Filled heart with primary color */
+.bestseller-card .wishlist-btn.active {
+    background-color: #FFF0F3;
+}
+
+.bestseller-card .wishlist-btn.active i {
+    color: var(--primary);
+    transform: scale(1.15);
+}
+
+/* Product rating */
+.bestseller-card .product-rating i.ti-star-filled {
+    color: var(--primary); /* Changes filled stars to your theme's primary color */
+}
+
+.bestseller-card .product-rating i.ti-star {
+    color: var(--border-gray, #D9D9D9); /* Optional: style for empty/unfilled stars */
+}
+
+/* Make rating stars and count smaller than product pricing */
+.bestseller-card .product-rating {
+    font-size: 12px; 
+    font-weight: 400;
+    gap: 2px;
+    margin-bottom: 6px;
+}
+
+.bestseller-card .product-rating .rating-count {
+    font-size: 12px; 
+    font-weight: 400;
+    color: var(--text-sub, #7A7A7A);
+    margin-left: 4px;
+}
+
+/* Product Pricing */
+.bestseller-card .product-pricing {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0 12px 0;
+}
+
+.bestseller-card .current-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+}
+
+.bestseller-card .original-price {
+    font-size: 12px;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.bestseller-card .discount-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary);
+    background-color: #ffebee;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+/* Clean Full-Width Add to Cart Button */
+.bestseller-card .btn-add-to-cart {
+    width: 100%;
+    background-color: var(--primary-hover);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-sizing: border-box;
+}
+
+.bestseller-card .btn-add-to-cart:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(176, 67, 88, 0.25);
+}
+
+.bestseller-card .btn-add-to-cart.added {
+    background-color: var(--accent-pink) !important; 
+    color: var(--text-main) !important;
+    box-shadow: 0 4px 12px rgba(176, 67, 88, 0.15);
+}
+
+.bestseller-card .btn-add-to-cart.added i {
+    color: var(--text-main);
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
 .bestsellers-section .scroll-dots {
     display: none;
 }
 
-/* --- Tier 2: iPad Screen Range (768px to 1023px) -> 4 Cards Layout --- */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* Responsive Media Queries */
+@media (min-width: 768px) and (max-width: 1366px) {
     .bestsellers-grid {
         grid-template-columns: repeat(4, 1fr);
         max-width: 1000px;
         padding-left: 24px;
         padding-right: 24px;
     }
-    .bestsellers-section .section-header {
-        max-width: 1000px;
-        padding-left: 24px;
-        padding-right: 24px;
+    /* Automatically hide the 5th card on iPad screens */
+    .bestseller-card:nth-child(5) {
+        display: none;
     }
 }
 
-/* --- Tier 1: Phone Screen Range (0px to 767px) -> Horizontal Scroll with 4 Cards & Dots --- */
 @media (max-width: 767px) {
     .bestsellers-section {
         padding: 50px 0;
-    }
-
-    .bestsellers-section .section-header {
-        max-width: 100% !important;
-        padding: 0 16px !important;
-        margin-bottom: 25px;
     }
 
     .bestsellers-grid {
@@ -588,12 +745,8 @@
         scroll-snap-type: x mandatory;
         gap: 12px;
         padding: 10px 16px 20px 16px;
-        justify-content: flex-start;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 100%;
     }
 
     .bestsellers-grid::-webkit-scrollbar {
@@ -602,15 +755,8 @@
 
     .bestseller-card {
         flex: 0 0 calc(50% - 16px);
-        min-width: 155px;
+        min-width: 160px;
         scroll-snap-align: start;
-        border-radius: 20px;
-        padding: 20px 12px;
-    }
-
-    .bestseller-card.active-card {
-        transform: scale(1.03);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     .bestsellers-section .scroll-dots {
@@ -625,11 +771,10 @@
         height: 8px;
         border-radius: 50%;
         background-color: var(--border-gray, #ddd);
-        transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .bestsellers-section .scroll-dots .dot.active {
-        background-color: var(--primary);
+        background-color: var(--primary-hover);
         transform: scale(1.2);
     }
 }

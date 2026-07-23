@@ -509,3 +509,306 @@
         text-align: left;
     }
 }
+
+/* ==========================================
+   Why Choose Us Section CSS
+   ========================================== */
+
+.why-choose-section {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #FAF8F8;
+    box-sizing: border-box;
+}
+
+.why-choose-section .why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    border: 1.5px solid rgba(238, 171, 192, 0.4);
+    border-radius: 24px;
+    background-color: #FFFDFD;
+    padding: 60px 30px 40px 30px;
+    box-sizing: border-box;
+}
+
+/* Header Integrated into Border */
+.why-header-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFDFD;
+    padding: 5px 24px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(238, 171, 192, 0.4);
+}
+
+.why-header-wrapper h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-main, #333);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Cards Grid */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Individual Card Container with bg-warm background */
+.why-card {
+    background-color: #FFF6F8; /* bg-warm */
+    border: 1px solid rgba(238, 171, 192, 0.3);
+    border-radius: 16px;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(176, 67, 88, 0.08);
+}
+
+/* Circular Icon Container (Color Primary fill, Icon bg-warm color) */
+.why-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary, #b04358);
+    color: #FFF6F8; /* Icon color matches bg-warm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(176, 67, 88, 0.2);
+}
+
+/* Card Info Typography */
+.why-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.why-card-info h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-high-contrast, #222);
+    margin: 0 0 8px 0;
+}
+
+.why-card-info p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-sub-dark, #666);
+    margin: 0;
+}
+
+
+/* ==========================================
+   Responsive Breakpoints for Tablets & Mobiles
+   ========================================== */
+@media (max-width: 1024px) {
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets/iPads */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .why-grid {
+        grid-template-columns: 1fr; /* 1 column for mobile phones */
+    }
+    
+    .why-choose-section .why-container {
+        padding: 50px 16px 30px 16px;
+    }
+}
+
+/* ==========================================
+   Meet Our Team Section CSS
+   ========================================== */
+
+.our-team-section {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #FAF8F8;
+    box-sizing: border-box;
+}
+
+.our-team-section .team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    /* Outer border wrapper background styling matching the reference image */
+    border: 1.5px solid var(--primary);
+    border-radius: 24px;
+    background-color: #F4C9D3 ;
+    padding: 60px 30px 40px 30px;
+    box-sizing: border-box;
+}
+
+/* Header Integrated into Border */
+.team-header-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFDFD;
+    border: 1.5px solid var(--primary);
+    border-radius: 12px;
+    padding: 5px 24px;
+}
+
+.team-header-wrapper h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-main, #333);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Team Cards Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Individual Team Card Container with bg-warm background */
+.team-card {
+    background-color: #FFF6F8; /* bg-warm */
+    border: 1px solid rgba(238, 171, 192, 0.3);
+    border-radius: 16px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(176, 67, 88, 0.08);
+}
+
+/* Circular Image Wrapper */
+.team-image-wrapper {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 3px solid #FFFDFD;
+    box-shadow: 0 4px 12px rgba(176, 67, 88, 0.15);
+}
+
+.team-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Team Info Typography */
+.team-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.team-card-info h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-high-contrast, #222);
+    margin: 0 0 4px 0;
+}
+
+.team-role {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary, #b04358);
+    margin: 0 0 10px 0;
+}
+
+.team-bio {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-sub-dark, #666);
+    margin: 0 0 16px 0;
+    min-height: 54px; /* Keeps card layouts uniform */
+}
+
+/* Social Media Circles (Color Primary fill, Icon bg-warm color) */
+.team-socials {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.social-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--primary, #b04358); /* Color primary fill */
+    color: #FFF6F8; /* Icon color matches bg-warm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.08);
+    text-decoration: none;
+    background-color: #F4C9D3;
+}
+
+
+/* ==========================================
+   Responsive Breakpoints for Tablets & Mobiles
+   ========================================== */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets/iPads */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .team-grid {
+        grid-template-columns: 1fr; /* 1 column for mobile phones */
+    }
+    
+    .our-team-section .team-container {
+        padding: 50px 16px 30px 16px;
+    }
+}

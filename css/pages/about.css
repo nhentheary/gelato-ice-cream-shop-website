@@ -198,3 +198,314 @@
         justify-content: center;
     }
 }
+
+/* ==========================================
+   Our Story Section
+   ========================================== */
+
+.our-story-section {
+    position: relative;
+    width: 100%;
+    padding: 100px 0;
+    background-color: #FAF8F8;
+}
+
+.our-story-section .story-container {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Left Image Styling */
+.story-image-content {
+    display: flex;
+    justify-content: center;
+}
+
+.story-image-content img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+}
+
+/* Right Content Styling */
+.story-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-heading-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.story-heading-wrapper h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.story-icon {
+    font-size: 18px;
+}
+
+.story-main-text,
+.story-sub-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-sub-dark);
+    margin: 0 0 16px 0;
+}
+
+/* Mission & Vision Grid Cards */
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.info-card {
+    background-color: #FFF6F8;
+    border: 1px solid rgba(238, 171, 192, 0.3);
+    border-radius: 16px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(176, 67, 88, 0.08);
+}
+
+.card-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: #FFF6F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(176, 67, 88, 0.25);
+}
+
+.card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.card-title-row h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-high-contrast);
+    margin: 0;
+}
+
+.card-text p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-sub-dark);
+    margin: 0;
+}
+
+/* iPad and Tablet Screen View */
+@media (max-width: 1024px) {
+    .our-story-section .story-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        text-align: left;
+    }
+
+    .story-container > .story-heading-wrapper,
+    .story-container > .story-image-content,
+    .story-container > .story-text-content {
+        display: contents;
+    }
+
+    .story-image-content {
+        float: none;
+    }
+
+    /* Define the grid areas to place Title and Descriptions on the right of the image */
+    .our-story-section .story-container {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        grid-template-areas:
+            "image heading"
+            "image text"
+            "cards cards";
+        gap: 20px 40px;
+        align-items: start;
+    }
+
+    /* 1. Square image on the left, spanning across the top two rows */
+    .story-image-content {
+        grid-area: image;
+    }
+
+    .story-image-content img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    /* 2. "Our Story" Title on the right, aligned next to the top of the image */
+    .story-heading-wrapper {
+        grid-area: heading;
+        align-self: flex-start;
+        margin-bottom: 0;
+    }
+
+    /* 3. Description text blocks stacked right underneath the title on the right */
+    .story-text-content {
+        grid-area: text;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* SECOND ROW: Mission & Vision cards side-by-side underneath */
+    .mission-vision-grid {
+        grid-area: cards;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .card-title-row {
+        justify-content: flex-start;
+    }
+}
+
+/* Mobile Phone Screen View: Cards stacked in 2 separate rows, full screen width */
+@media (max-width: 768px) {
+    .our-story-section .story-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "heading"
+            "image"
+            "desc1"
+            "desc2"
+            "mission"
+            "vision";
+        gap: 20px;
+        text-align: center;
+        padding: 0 16px;
+    }
+
+    /* 1. Title (Our Story) at the top */
+    .story-heading-wrapper {
+        grid-area: heading;
+        justify-content: center;
+    }
+
+    /* 2. Image second (Square fit) */
+    .story-image-content {
+        grid-area: image;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .story-image-content img {
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    /* 3. First paragraph third */
+    .story-text-content p:nth-child(1) {
+        grid-area: desc1;
+    }
+
+    /* 4. Second paragraph fourth */
+    .story-text-content p:nth-child(2) {
+        grid-area: desc2;
+    }
+
+    /* Break cards grid into full-width separate rows */
+    .mission-vision-grid {
+        display: contents; /* Allows individual cards to map to grid areas */
+    }
+
+    /* Mission Card: Row 1 */
+    .mission-vision-grid > .info-card:nth-child(1) {
+        grid-area: mission;
+    }
+
+    /* Vision Card: Row 2 */
+    .mission-vision-grid > .info-card:nth-child(2) {
+        grid-area: vision;
+    }
+
+    /* Individual Card Layout: Full screen width, horizontal flex (Circle/Icon left, Text right) */
+    .info-card {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 16px;
+        background: #ffffff; /* Adjust background if needed */
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Circle and Icon on the left */
+    .card-icon-circle {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 4px 12px rgba(176, 67, 88, 0.25);
+    }
+
+    /* Right side content: Title and description below it */
+    .card-text {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .card-title-row {
+        justify-content: flex-start;
+        margin-bottom: 4px;
+    }
+
+    .card-text p {
+        margin: 0;
+        text-align: left;
+    }
+}

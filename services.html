@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GELATO - Catering</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>GELATO - Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/resonsive.css">
@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="css/components/navbar.css">
     <link rel="stylesheet" href="css/components/footer.css">
     <link rel="stylesheet" href="css/components/cards.css">
-    <link rel="stylesheet" href="css/pages/catering.css">
-
+    <link rel="stylesheet" href="css/pages/services.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -24,14 +23,12 @@
                 <span class="navbar-logo-text">GELATO</span>
             </a>
             
-
             <div class="navbar-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="menu.html">Menu</a>
                 <a href="services.html" class="active">Services</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                
             </div>
 
             <div class="navbar-icons">
@@ -50,13 +47,154 @@
                 </a>
             </div>
 
-            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu"> <!-- Added id="hamburgerBtn" -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
-    <main>
 
+    <main>
+    <!-- Services Hero Section -->
+        <section class="services-hero">
+            <div class="hero-container">
+                <div class="hero-image-content">
+                    <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=400&q=80" alt="Artisanal Gelato Scoops">
+                </div>
+
+                <div class="hero-text-content">
+                    <h2>More Than Ice Cream, We Create <span class="title-3d">Sweet Experiences</span></h2>                    
+                    <p class="hero-description">Whether you're planning a birthday, wedding, corporate event, or simply craving your favorite scoop delivered to your door, Scoopify is here to make every moment sweeter.</p>
+                    <div class="hero-buttons">
+                        <a href="#services-grid-section" class="btn-primary">Explore Services</a>
+                        <a href="contact.html" class="btn-secondary">Contact Us <i class="ti ti-heart" style="vertical-align: middle;"></i></a>
+                    </div>
+                </div>
+
+                <div class="hero-image-content">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80" alt="Gelato Catering Setup">
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Sweet Services Section -->
+        <section class="section-wrapper" id="services-grid-section">
+            <div class="section-container">
+                <div class="section-header-wrapper">
+                    <h3>Our Sweet Services <span class="heart-icon"><i class="ti ti-heart"></i></span></h3>
+                </div>
+                <div class="services-grid">
+                    <!-- Card 1: Event Catering (ID 1) -->
+                    <div class="service-card">
+                        <div class="service-content-area">
+                            <h4><i class="ti ti-confetti"></i> Event Catering</h4>
+                            <p>Ice cream station for weddings, birthdays & events.</p>
+                            <a href="service-detail.html?id=1" class="service-btn">View Detail <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="service-img-container">
+                            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80" alt="Event Catering">
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Corporate Events (ID 2) -->
+                    <div class="service-card">
+                        <div class="service-content-area">
+                            <h4><i class="ti ti-briefcase"></i> Corporate Events</h4>
+                            <p>Professional ice cream catering for offices, brand activations & meetings.</p>
+                            <a href="service-detail.html?id=2" class="service-btn">View Detail <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="service-img-container">
+                            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=400&q=80" alt="Corporate Events">
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Custom Ice Cream Builder (ID 3) -->
+                    <div class="service-card">
+                        <div class="service-content-area">
+                            <h4><i class="ti ti-ice-cream-2"></i> Custom Ice Cream Builder</h4>
+                            <p>Create your own flavor combo with your favorite toppings.</p>
+                            <a href="service-detail.html?id=3" class="service-btn">View Detail <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="service-img-container">
+                            <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=400&q=80" alt="Custom Ice Cream Builder">
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Ice Cream Workshops (ID 4) -->
+                    <div class="service-card">
+                        <div class="service-content-area">
+                            <h4><i class="ti ti-chef-hat"></i> Ice Cream Workshops</h4>
+                            <p>Fun & interactive workshops for kids and ice cream lovers.</p>
+                            <a href="service-detail.html?id=4" class="service-btn">View Detail <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="service-img-container">
+                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80" alt="Ice Cream Workshops">
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Party Packages (ID 5) -->
+                    <div class="service-card">
+                        <div class="service-content-area">
+                            <h4><i class="ti ti-gift"></i> Party Packages</h4>
+                            <p>Ready-made dessert packages for birthdays and private gatherings.</p>
+                            <a href="service-detail.html?id=5" class="service-btn">View Detail <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="service-img-container">
+                            <img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=400&q=80" alt="Party Packages">
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Private Celebrations (ID 6) -->
+                    <div class="service-card">
+                        <div class="service-content-area">
+                            <h4><i class="ti ti-glass"></i> Private Celebrations</h4>
+                            <p>Personalized ice cream experience for romantic events and VIP gatherings.</p>
+                            <a href="service-detail.html?id=6" class="service-btn">View Detail <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="service-img-container">
+                            <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=400&q=80" alt="Private Celebrations">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="section-wrapper">
+            <div class="section-container">
+                <div class="section-header-wrapper">
+                    <h3>How It Works <span class="heart-icon"><i class="ti ti-heart"></i></span></h3>
+                </div>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number-circle">1</div>
+                        <h4>Choose Service</h4>
+                        <p>Pick the perfect service for your event.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number-circle">2</div>
+                        <h4>Tell Us Your Details</h4>
+                        <p>Share your event details and preferences.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number-circle">3</div>
+                        <h4>We Prepare Everything</h4>
+                        <p>We handle setup, service, and clean up for you.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number-circle">4</div>
+                        <h4>Enjoy Your Event</h4>
+                        <p>Sit back, relax, and enjoy the sweet moments!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <div class="cta-banner">
+            <h3>Ready to Make Your Event Sweeter?</h3>
+            <p>Book Scoopify today and let us serve happiness.</p>
+            <a href="contact.html" class="btn-primary">Book a Service <i class="ti ti-arrow-right" style="vertical-align: middle;"></i></a>
+        </div>
     </main>
 
     <!-- =========================================
@@ -131,5 +269,6 @@
 </body>
 
 <script src="js/navigation.js"></script>
+<script src="js/pages/services.js"></script>
 
 </html>

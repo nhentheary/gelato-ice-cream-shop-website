@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GELATO - Catering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/resonsive.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/components/footer.css">
+    <link rel="stylesheet" href="css/components/cards.css">
+    <link rel="stylesheet" href="css/pages/service-detail.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="assets/images/logo/GELATO-Logo.png" alt="" class="navbar-logo-icon">
+                <span class="navbar-logo-text">GELATO</span>
+            </a>
+
+            <div class="navbar-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="navbar-icons">
+                <div class="navbar-search">
+                    <input type="text" placeholder="Search...">
+                    <i class="ti ti-search"></i>
+                </div>
+                <a href="cart.html" style="position:relative;">
+                    <i class="ti ti-shopping-cart"></i>
+                    <span class="cart-badge" style="display:inline-block;">0</span>
+                </a>
+                <a href="account.html">
+                    <div class="navbar-profile">
+                        <i class="ti ti-user"></i>
+                    </div>
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Breadcrumb / Back Link -->
+        <div class="breadcrumb-bar">
+            <a href="services.html" class="back-link"><i class="ti ti-arrow-left"></i> Back to Services Overview</a>
+        </div>
+
+        <!-- Detailed Service Showcase Section -->
+        <section class="service-detail-wrapper">
+            <div class="service-detail-container">
+                <!-- Left Side: Image Display -->
+                <div class="service-detail-image">
+                    <img id="service-img" src="" alt="Service Image">
+                </div>
+
+                <!-- Right Side: Commercial Details & Local Market Packages -->
+                <div class="service-detail-content">
+                    <h2 id="service-title"><i id="service-icon" class="ti"></i> <span id="service-title-text"></span></h2>
+                    
+                    <div class="rating-row">
+                        <span>⭐⭐⭐⭐⭐</span> <strong id="service-rating">4.9</strong> (<span id="service-reviews">126</span> Reviews) &bull; <span id="service-location">📍 Serving Cambodia</span>
+                    </div>
+
+                    <p id="service-desc" class="lead-text"></p>
+
+                    <!-- Package Breakdown Options (Local Market Pricing) -->
+                    <div id="packages-container" class="packages-grid">
+                        <!-- Dynamic Packages inserted via JavaScript -->
+                    </div>
+
+                    <div class="action-group">
+                        <button type="button" class="btn-primary" id="primary-cta-btn" onclick="showForm('booking')">Book Package</button>
+                        <button type="button" class="btn-secondary" id="secondary-cta-btn" onclick="showForm('quote')">Get a Free Quote</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reusable Form 1: Booking Form (Used by Event Catering, Party, Private, Workshops) -->
+        <section id="booking-form-wrapper" class="form-wrapper">
+            <div class="form-container">
+                <h3><i class="ti ti-calendar-event"></i> Complete Your Booking Request</h3>
+                <p>Secure your slot for <strong id="booking-service-name">this service</strong> with our local team in Cambodia.</p>
+                
+                <form id="unifiedBookingForm" onsubmit="handleFormSubmit(event, 'booking')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="b-name">Full Name</label>
+                            <input type="text" id="b-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="b-email">Email Address</label>
+                            <input type="email" id="b-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="b-phone">Phone Number</label>
+                            <input type="tel" id="b-phone" placeholder="e.g. 012 345 678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="b-package">Selected Package</label>
+                            <select id="b-package">
+                                <option value="Classic / Standard">Classic / Standard Package</option>
+                                <option value="Premium">Premium Package</option>
+                                <option value="Luxury / Custom">Luxury / Custom Package</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="b-date">Event / Preferred Date</label>
+                            <input type="date" id="b-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="b-guests">Estimated Guests / Participants</label>
+                            <input type="number" id="b-guests" placeholder="e.g. 50" min="1" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="b-venue">Venue / Delivery Address</label>
+                            <input type="text" id="b-venue" placeholder="e.g. Sensok, Phnom Penh" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Optional Add-ons</label>
+                            <div class="checkbox-group-container">
+                                <label class="checkbox-label"><input type="checkbox" name="addon" value="Extra Hour (+$30)"> Extra Hour (+$30)</label>
+                                <label class="checkbox-label"><input type="checkbox" name="addon" value="Additional Staff (+$20)"> Additional Staff (+$20)</label>
+                                <label class="checkbox-label"><input type="checkbox" name="addon" value="Premium Decoration (+$50)"> Premium Decoration (+$50)</label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="b-notes">Special Requests / Notes</label>
+                            <textarea id="b-notes" placeholder="Tell us about your theme, flavor preferences, or specific instructions..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-submit-btn">Confirm Booking <i class="ti ti-check" style="vertical-align: middle;"></i></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Reusable Form 2: Quote Request Form (Used by Corporate Events & Custom Requests) -->
+        <section id="quote-form-wrapper" class="form-wrapper">
+            <div class="form-container">
+                <h3><i class="ti ti-file-description"></i> Request a Custom Quote</h3>
+                <p>Tell us about your corporate event or custom requirements for <strong id="quote-service-name">this service</strong>.</p>
+                
+                <form id="unifiedQuoteForm" onsubmit="handleFormSubmit(event, 'quote')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="q-company">Company / Organization Name</label>
+                            <input type="text" id="q-company" placeholder="Enter company name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-person">Contact Person</label>
+                            <input type="text" id="q-person" placeholder="Enter contact name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-email">Email Address</label>
+                            <input type="email" id="q-email" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-phone">Phone Number</label>
+                            <input type="tel" id="q-phone" placeholder="e.g. 012 345 678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-date">Event Date</label>
+                            <input type="date" id="q-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-guests">Estimated Guests / Attendees</label>
+                            <input type="number" id="q-guests" placeholder="e.g. 100" min="1" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="q-address">Event Location / Address</label>
+                            <input type="text" id="q-address" placeholder="e.g. Borey Peng Huoth, Phnom Penh" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-branding">Branding / Logo Needed?</label>
+                            <select id="q-branding">
+                                <option value="Yes">Yes, Custom Branding & Signage</option>
+                                <option value="Standard">Standard Setup Only</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="q-budget">Estimated Budget ($)</label>
+                            <input type="text" id="q-budget" placeholder="e.g. $450">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="q-requirements">Specific Requirements & Details</label>
+                            <textarea id="q-requirements" placeholder="Describe your corporate event goals, setup schedule, or menu preferences..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-submit-btn">Submit Quote Request <i class="ti ti-send" style="vertical-align: middle;"></i></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Reusable Form 3: Order Form (Used by Custom Ice Cream Builder) -->
+        <section id="order-form-wrapper" class="form-wrapper">
+            <div class="form-container">
+                <h3><i class="ti ti-shopping-cart"></i> Complete Your Custom Order</h3>
+                <p>Review your custom creation and provide delivery/pickup details.</p>
+                
+                <form id="unifiedOrderForm" onsubmit="handleFormSubmit(event, 'order')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="o-name">Customer Name</label>
+                            <input type="text" id="o-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="o-phone">Phone Number</label>
+                            <input type="tel" id="o-phone" placeholder="e.g. 012 345 678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="o-fulfillment">Pickup / Delivery</label>
+                            <select id="o-fulfillment">
+                                <option value="Delivery">Delivery (Phnom Penh)</option>
+                                <option value="Pickup">Store Pickup (Flagship Parlor)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="o-payment">Payment Method</label>
+                            <select id="o-payment">
+                                <option value="ABA PayWay / KHQR">ABA PayWay / KHQR</option>
+                                <option value="Cash on Delivery / Pickup">Cash on Delivery / Pickup</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="o-address">Delivery Address / Notes</label>
+                            <textarea id="o-address" placeholder="Enter exact street address, house number, or delivery instructions..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-submit-btn">Place Custom Order <i class="ti ti-check" style="vertical-align: middle;"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-columns-wrapper">
+                <div class="footer-col footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
+                        <span class="footer-logo-text">GELATO</span>
+                    </a>
+                    <p class="body-text footer-bio">
+                        Crafting artisanal, small-batch gelato with love, premium ingredients, and a whole lot of sweetness. Every scoop tells a delicious story.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook" class="interactive"><i class="ti ti-brand-facebook"></i></a>
+                        <a href="#" aria-label="Instagram" class="interactive"><i class="ti ti-brand-instagram"></i></a>
+                        <a href="#" aria-label="TikTok" class="interactive"><i class="ti ti-brand-tiktok"></i></a>
+                        <a href="#" aria-label="Twitter" class="interactive"><i class="ti ti-brand-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Link</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Classic Gelato</a></li>
+                        <li><a href="#">Fruit Sorbets</a></li>
+                        <li><a href="#">Nutty Delights</a></li>
+                        <li><a href="#">Vegan Flavors</a></li>
+                        <li><a href="#">Specialty Drops</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-contact-col">
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-contact-list">
+                        <li><i class="ti ti-map-pin"></i> <span>St 909, Toul Kork, Phnom Penh</span></li>
+                        <li><i class="ti ti-phone"></i> <span>+855 234-657-890</span></li>
+                        <li><i class="ti ti-mail"></i> <span>gelatocambodia@gmail.com</span></li>
+                        <li><i class="ti ti-clock"></i> <span>Mon–Sun: 9am–9pm</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="caption">&copy; 2026 Gelato Cambodia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/service-detail.js"></script>
+</body>
+</html>

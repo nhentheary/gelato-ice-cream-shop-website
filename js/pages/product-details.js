@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Full Products Data Array (All 48 items across all 6 categories)
     const productsData = [
         // Best Sellers (IDs 1-8)
-        { id: 1, category: "best-sellers", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80", title: "Strawberry Bliss", rating: "5.0 (1,420 orders)", star: true, price: "$5.50", desc: "A delightful blend of fresh sweet strawberries and creamy artisanal gelato." },
+        { id: 1, category: "best-sellers", img: "assets/images/Products/best-seller-img/1.jpg", title: "Strawberry Bliss", rating: "5.0 (1,420 orders)", star: true, price: "$5.50", desc: "A delightful blend of fresh sweet strawberries and creamy artisanal gelato." },
         { id: 2, category: "best-sellers", img: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=400&q=80", title: "Chocolate Chip", rating: "4.2 (340 orders)", star: true, price: "$4.75", desc: "Classic vanilla gelato packed with rich, premium dark chocolate chips." },
         { id: 3, category: "best-sellers", img: "https://images.unsplash.com/photo-1557142046-c704a3adf3ea?auto=format&fit=crop&w=400&q=80", title: "Chocolate Lover", rating: "4.9 (980 orders)", star: true, price: "$4.80", desc: "An intense, velvety smooth triple chocolate experience for true enthusiasts." },
         { id: 4, category: "best-sellers", img: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=400&q=80", title: "Matcha Dream", rating: "4.4 (195 orders)", star: true, price: "$5.20", desc: "Authentic Japanese ceremonial-grade matcha blended into rich cream." },

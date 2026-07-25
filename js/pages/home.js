@@ -1,5 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
+    // 0. Cart Badge Management & Synchronization
+    // ==========================================
+    const cartBadge = document.getElementById('cartBadge') || document.querySelector('.cart-badge');
+    
+    function updateCartBadge(count) {
+        if (cartBadge) {
+            cartBadge.textContent = count;
+            cartBadge.style.display = count > 0 ? 'inline-block' : 'none';
+        }
+    }
+
+    let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+    updateCartBadge(cartCount);
+
+    // Sync across tabs/pages
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'cartCount') {
+            cartCount = parseInt(e.newValue) || 0;
+            updateCartBadge(cartCount);
+        }
+    });
+
+    // ==========================================
     // 1. Hero Section Slideshow
     // ==========================================
     const track = document.getElementById('heroTrack');
@@ -92,14 +115,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 4. Add to Cart Button Interactive State
+    // 4. Add to Cart Button Interactive State (Linked to Cart Count & Storage)
     // ==========================================
     const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
 
     addToCartButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            // Prevent multiple clicks while active
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Prevent multiple rapid clicks while active
             if (this.classList.contains("added")) return;
+
+            // Increment cart counter and update storage/badge
+            cartCount += 1;
+            updateCartBadge(cartCount);
+            localStorage.setItem('cartCount', cartCount);
 
             // Save original HTML content (icon + text)
             const originalHTML = this.innerHTML;
@@ -124,7 +155,10 @@ document.addEventListener("DOMContentLoaded", () => {
     wishlistButtons.forEach(button => {
         const icon = button.querySelector("i");
         
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             this.classList.toggle("active");
             
             if (this.classList.contains("active")) {

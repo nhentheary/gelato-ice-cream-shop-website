@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GELATO - Catering</title>
+    <title>GELATO - Product Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="css/global.css">
@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="css/components/navbar.css">
     <link rel="stylesheet" href="css/components/footer.css">
     <link rel="stylesheet" href="css/components/cards.css">
-    <link rel="stylesheet" href="css/pages/catering.css">
-
+    <link rel="stylesheet" href="css/pages/product-details.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -24,14 +23,12 @@
                 <span class="navbar-logo-text">GELATO</span>
             </a>
             
-
             <div class="navbar-links" id="navLinks">
                 <a href="index.html">Home</a>
-                <a href="menu.html">Menu</a>
-                <a href="services.html" class="active">Services</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                
             </div>
 
             <div class="navbar-icons">
@@ -41,7 +38,7 @@
                 </div>
                 <a href="cart.html" style="position:relative;">
                     <i class="ti ti-shopping-cart"></i>
-                    <span class="cart-badge" style="display:inline-block;">0</span>
+                    <span class="cart-badge" id="cartBadge">0</span>
                 </a>
                 <a href="account.html">
                     <div class="navbar-profile">
@@ -50,23 +47,82 @@
                 </a>
             </div>
 
-            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu"> <!-- Added id="hamburgerBtn" -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
-    <main>
 
+    <!-- Main Content -->
+    <main>
+        <div class="container product-detail-container">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb"> 
+                <a href="menu.html">Menu</a> / 
+                <span class="breadcrumb-title">Product Details</span>
+            </nav>
+
+            <div class="product-detail-card">
+                <!-- Product Image -->
+                <div class="product-detail-img-box">
+                    <img src="" alt="" class="product-detail-img">
+                </div>
+
+                <!-- Product Info with Enhanced Details -->
+                <div class="product-detail-info">
+                    <h1 class="product-detail-title">Loading...</h1>
+                    <div class="product-detail-price">$0.00</div>
+                    
+                    <div class="product-detail-rating-row">
+                        <div class="product-detail-stars">
+                            <i class="ti ti-star-filled"></i>
+                            <i class="ti ti-star-filled"></i>
+                            <i class="ti ti-star-filled"></i>
+                            <i class="ti ti-star-filled"></i>
+                            <i class="ti ti-star-half-filled"></i>
+                        </div>
+                        <span class="product-detail-reviews">(120 Reviews)</span>
+                    </div>
+
+                    <p class="product-detail-description">Loading product description...</p>
+                    
+                    <!-- Expanded Details Section -->
+                    <div class="product-extra-details">
+                        <div class="ingredients-section">
+                            <strong><i class="ti ti-salad"></i> Ingredients:</strong>
+                            <span class="product-detail-ingredients">Milk, Cream, Sugar, Natural Flavors</span>
+                        </div>
+                        <div class="nutrition-section">
+                            <strong><i class="ti ti-activity"></i> Nutrition Info (Per Serving):</strong>
+                            <span>220 kcal • 11g Fat • 24g Carbs • 4g Protein</span>
+                        </div>
+                        <div class="storage-section">
+                            <strong><i class="ti ti-snowflake"></i> Storage Guide:</strong>
+                            <span>Keep frozen at -18°C or below. Best consumed within 2 weeks of opening.</span>
+                        </div>
+                    </div>
+
+                    <!-- Quantity and Add to Cart Row -->
+                    <div class="purchase-actions">
+                        <div class="quantity-selector">
+                            <button type="button" id="decreaseQty">-</button>
+                            <input type="text" id="quantityInput" value="1" readonly>
+                            <button type="button" id="increaseQty">+</button>
+                        </div>
+
+                        <button class="add-to-cart-btn" id="detailAddToCartBtn">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- =========================================
-    Scoopify Footer Component
-    ========================================= -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container footer-container">
-            <!-- Columns Wrapper for 4-Column Grid Layout -->
             <div class="footer-columns-wrapper">
-                <!-- Col 1: Brand & Bio -->
                 <div class="footer-col footer-brand">
                     <a href="index.html" class="footer-logo">
                         <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
@@ -83,7 +139,6 @@
                     </div>
                 </div>
 
-                <!-- Col 2: Quick Link -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Quick Link</h3>
                     <ul class="footer-links">
@@ -95,7 +150,6 @@
                     </ul>
                 </div>
 
-                <!-- Col 3: Categories -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Categories</h3>
                     <ul class="footer-links">
@@ -107,7 +161,6 @@
                     </ul>
                 </div>
 
-                <!-- Col 4: Contact -->
                 <div class="footer-col footer-contact-col">
                     <h3 class="footer-heading">Contact</h3>
                     <ul class="footer-contact-list">
@@ -120,7 +173,6 @@
             </div>
         </div>
 
-        <!-- Bottom Bar -->
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
                 <p class="caption">&copy; 2026 Gelato Cambodia. All rights reserved.</p>
@@ -128,8 +180,7 @@
         </div>
     </footer>
     
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/product-details.js"></script>
 </body>
-
-<script src="js/navigation.js"></script>
-
 </html>

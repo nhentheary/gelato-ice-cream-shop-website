@@ -13,10 +13,8 @@
     <link rel="stylesheet" href="css/components/footer.css">
     <link rel="stylesheet" href="css/components/cards.css">
     <link rel="stylesheet" href="css/pages/menu.css">
-
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="container navbar-container">
             <a href="index.html" class="navbar-logo">
@@ -24,14 +22,12 @@
                 <span class="navbar-logo-text">GELATO</span>
             </a>
             
-
             <div class="navbar-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="menu.html" class="active">Menu</a>
                 <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                
             </div>
 
             <div class="navbar-icons">
@@ -50,27 +46,75 @@
                 </a>
             </div>
 
-            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu"> <!-- Added id="hamburgerBtn" -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
-    <main>
 
+    <!-- Hero Section -->
+    <header class="menu-hero">
+        <div class="hero-container">
+            <div class="hero-text-content">
+                <h1>Explore Our <span class="title-3d">Delicious</span> Menu</h1>
+                <p>Indulge in our handcrafted gelatos, rich sundaes, refreshing shakes, and celebration cakes made fresh daily.</p>
+            </div>
+            <div class="hero-image-content">
+                <img src="" alt="Gelato showcase">
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Navigation Wrapper -->
+    <div class="category-nav-wrapper">
+        <div class="category-nav-container" role="tablist">
+            <button class="cat-tab active" data-category="best-sellers" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-flame"></i></div>
+                <span>Best Sellers</span>
+            </button>
+            <button class="cat-tab" data-category="sundaes" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-ice-cream"></i></div>
+                <span>Sundaes</span>
+            </button>
+            <button class="cat-tab" data-category="shakes" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-cup"></i></div>
+                <span>Shakes</span>
+            </button>
+            <button class="cat-tab" data-category="cakes" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-cake"></i></div>
+                <span>Cakes</span>
+            </button>
+            <button class="cat-tab" data-category="cones" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-cone"></i></div>
+                <span>Cones</span>
+            </button>
+            <button class="cat-tab" data-category="scoops" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-scoop"></i></div>
+                <span>Scoops</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <main class="section-wrapper">
+        <!-- Products Grid Container -->
+        <div id="productsGrid" class="products-grid">
+            <!-- Dynamically populated items appear here -->
+        </div>
+
+        <!-- Pagination Container -->
+        <div id="paginationContainer" class="pagination-container" style="display: flex; justify-content: center; gap: 8px; margin-top: 40px;">
+            <!-- Dynamically populated pagination buttons appear here -->
+        </div>
     </main>
 
-    <!-- =========================================
-    Scoopify Footer Component
-    ========================================= -->
     <footer class="footer">
         <div class="container footer-container">
-            <!-- Columns Wrapper for 4-Column Grid Layout -->
             <div class="footer-columns-wrapper">
-                <!-- Col 1: Brand & Bio -->
                 <div class="footer-col footer-brand">
                     <a href="index.html" class="footer-logo">
                         <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
-                        <span class="footer-logo-text">GELATO</span>
+                        <span class="navbar-logo-text">GELATO</span>
                     </a>
                     <p class="body-text footer-bio">
                         Crafting artisanal, small-batch gelato with love, premium ingredients, and a whole lot of sweetness. Every scoop tells a delicious story.
@@ -83,7 +127,6 @@
                     </div>
                 </div>
 
-                <!-- Col 2: Quick Link -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Quick Link</h3>
                     <ul class="footer-links">
@@ -95,7 +138,6 @@
                     </ul>
                 </div>
 
-                <!-- Col 3: Categories -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Categories</h3>
                     <ul class="footer-links">
@@ -107,7 +149,6 @@
                     </ul>
                 </div>
 
-                <!-- Col 4: Contact -->
                 <div class="footer-col footer-contact-col">
                     <h3 class="footer-heading">Contact</h3>
                     <ul class="footer-contact-list">
@@ -120,7 +161,6 @@
             </div>
         </div>
 
-        <!-- Bottom Bar -->
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
                 <p class="caption">&copy; 2026 Gelato Cambodia. All rights reserved.</p>
@@ -128,8 +168,7 @@
         </div>
     </footer>
     
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/menu.js"></script>
 </body>
-
-<script src="js/navigation.js"></script>
-
 </html>

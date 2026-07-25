@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GELATO - Product Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/resonsive.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/components/footer.css">
+    <link rel="stylesheet" href="css/components/cards.css">
+    <link rel="stylesheet" href="css/pages/cart.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="assets/images/logo/GELATO-Logo.png" alt="" class="navbar-logo-icon">
+                <span class="navbar-logo-text">GELATO</span>
+            </a>
+            
+            <div class="navbar-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="navbar-icons">
+                <div class="navbar-search">
+                    <input type="text" placeholder="Search...">
+                    <i class="ti ti-search"></i>
+                </div>
+                <a href="cart.html" style="position:relative;">
+                    <i class="ti ti-shopping-cart"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </a>
+                <a href="account.html">
+                    <div class="navbar-profile">
+                        <i class="ti ti-user"></i>
+                    </div>
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- =========================================================================
+            COMPLETE ORDERING FLOW HTML STRUCTURE (Cart ➔ Checkout ➔ Confirmation)
+            ========================================================================= -->
+
+        <div class="ordering-flow-wrapper">
+
+            <!-- ==========================================
+                STEP 1: CART PAGE
+                ========================================== -->
+            <div id="cartPage" class="flow-step-container active-step">
+                <h2 class="section-title">Your Shopping Cart</h2>
+                
+                <div class="cart-content-grid">
+                    <!-- Left: Selected Items List -->
+                    <div class="cart-items-section">
+                        <!-- Dynamically populated or static item cards -->
+                        <div class="cart-item-card" data-id="1">
+                            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=200&q=80" alt="Strawberry Bliss" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <h4 class="cart-item-title">Strawberry Bliss</h4>
+                                <span class="cart-item-price" data-price="5.50">$5.50</span>
+                            </div>
+                            <div class="cart-quantity-controls">
+                                <button class="qty-btn decrease-qty" aria-label="Decrease quantity">-</button>
+                                <input type="text" class="qty-input" value="1" readonly>
+                                <button class="qty-btn increase-qty" aria-label="Increase quantity">+</button>
+                            </div>
+                            <div class="cart-item-total">$5.50</div>
+                            <button class="remove-item-btn" aria-label="Remove item"><i class="ti ti-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Order Summary & Coupon -->
+                    <div class="cart-summary-section">
+                        <div class="summary-card">
+                            <h3>Order Summary</h3>
+                            
+                            <!-- Coupon Input Field -->
+                            <div class="coupon-box">
+                                <input type="text" id="couponInput" placeholder="Enter coupon code (e.g. SAVE10)">
+                                <button id="applyCouponBtn" type="button">Apply</button>
+                            </div>
+                            <span id="couponMessage" class="coupon-msg"></span>
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="cartSubtotal">$5.50</span>
+                            </div>
+                            <div class="summary-row discount-row" style="display: none;">
+                                <span>Discount (<span id="discountPercent">0</span>%)</span>
+                                <span id="cartDiscount">-$0.00</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>Total</span>
+                                <span id="cartTotal">$5.50</span>
+                            </div>
+
+                            <button id="proceedToCheckoutBtn" type="button" class="btn-primary checkout-btn">Proceed to Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ==========================================
+                STEP 2: CHECKOUT PAGE (Conditional Fulfillment)
+                ========================================== -->
+            <div id="checkoutPage" class="flow-step-container" style="display: none;">
+                <div class="checkout-header-nav">
+                    <button id="backToCartBtn" type="button" class="btn-secondary">← Back to Cart</button>
+                    <h2 class="section-title">Checkout</h2>
+                </div>
+                
+                <form id="checkoutForm" class="checkout-form-grid">
+                    <!-- Left Side: Fulfillment & Customer Info -->
+                    <div class="checkout-inputs-column">
+                        
+                        <!-- Fulfillment Switcher -->
+                        <div class="fulfillment-switcher-box">
+                            <h3>Fulfillment Method</h3>
+                            <div class="fulfillment-options">
+                                <label class="fulfillment-option-card active">
+                                    <input type="radio" name="fulfillmentType" value="delivery" checked>
+                                    <i class="ti ti-bike"></i>
+                                    <span>Delivery</span>
+                                </label>
+                                <label class="fulfillment-option-card">
+                                    <input type="radio" name="fulfillmentType" value="pickup">
+                                    <i class="ti ti-building-store"></i>
+                                    <span>Store Pick-up</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Customer Information -->
+                        <div class="customer-info-box">
+                            <h3>Customer Information</h3>
+                            <div class="form-group">
+                                <label for="customerName">Full Name</label>
+                                <input type="text" id="customerName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone">Phone Number</label>
+                                <input type="tel" id="customerPhone" required placeholder="Enter your phone number">
+                            </div>
+                            <!-- Conditional Address Field (Shown only for Delivery) -->
+                            <div class="form-group" id="addressGroup">
+                                <label for="customerAddress">Delivery Address</label>
+                                <textarea id="customerAddress" placeholder="Enter your full delivery address"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Payment Methods -->
+                        <div class="payment-methods-box">
+                            <h3>Payment Methods</h3>
+                            <div class="payment-option">
+                                <label>
+                                    <input type="radio" name="paymentMethod" value="Cash on Delivery" checked>
+                                    Cash on Delivery / Pick-up
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <label>
+                                    <input type="radio" name="paymentMethod" value="ABA Pay">
+                                    ABA Pay
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <label>
+                                    <input type="radio" name="paymentMethod" value="Wing">
+                                    Wing
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Real-time Order Summary Review -->
+                    <div class="checkout-summary-column">
+                        <div class="summary-card">
+                            <h3>Order Review</h3>
+                            <div id="checkoutItemsList" class="checkout-review-items">
+                                <!-- Populated dynamically -->
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="coSubtotal">$5.50</span>
+                            </div>
+                            <div class="summary-row" id="coDeliveryFeeRow">
+                                <span>Delivery Fee</span>
+                                <span id="coDeliveryFee">$2.00</span>
+                            </div>
+                            <div class="summary-row discount-row" id="coDiscountRow" style="display: none;">
+                                <span>Discount</span>
+                                <span id="coDiscount">-$0.00</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>Final Total</span>
+                                <span id="coFinalTotal">$7.50</span>
+                            </div>
+
+                            <button type="submit" class="btn-primary place-order-btn">Place Order</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- ==========================================
+                STEP 3: CONFIRMATION RECEIPT PAGE
+                ========================================== -->
+            <div id="confirmationPage" class="flow-step-container" style="display: none;">
+                <div class="confirmation-card">
+                    <div class="success-icon-badge">
+                        <i class="ti ti-circle-check-filled"></i>
+                    </div>
+                    <h2 class="section-title">Order Placed Successfully!</h2>
+                    <p class="confirmation-subtitle">Thank you for your purchase. Your order has been processed.</p>
+
+                    <div class="receipt-box">
+                        <div class="receipt-header">
+                            <span>Order Receipt</span>
+                            <span id="receiptOrderId">#ORD-2026-9481</span>
+                        </div>
+                        
+                        <div class="receipt-section">
+                            <h4>Customer Details</h4>
+                            <p><strong>Name:</strong> <span id="receiptName">-</span></p>
+                            <p><strong>Phone:</strong> <span id="receiptPhone">-</span></p>
+                            <p id="receiptFulfillmentContainer"><strong>Fulfillment:</strong> <span id="receiptFulfillment">-</span></p>
+                            <p id="receiptAddressContainer"><strong>Address:</strong> <span id="receiptAddress">-</span></p>
+                        </div>
+
+                        <div class="receipt-section">
+                            <h4>Payment Information</h4>
+                            <p><strong>Method:</strong> <span id="receiptPayment">-</span></p>
+                            <p><strong>Status:</strong> <span class="badge-success">Confirmed</span></p>
+                        </div>
+
+                        <div class="receipt-section">
+                            <h4>Ordered Items</h4>
+                            <div id="receiptItemsList" class="receipt-items-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="receipt-totals">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="receiptSubtotal">$5.50</span>
+                            </div>
+                            <div class="summary-row" id="receiptFeeRow">
+                                <span id="receiptFeeLabel">Delivery Fee</span>
+                                <span id="receiptFeeAmount">$2.00</span>
+                            </div>
+                            <div class="summary-row discount-row" id="receiptDiscountRow" style="display: none;">
+                                <span>Discount</span>
+                                <span id="receiptDiscountAmount">-$0.00</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>Total Paid</span>
+                                <span id="receiptFinalTotal">$7.50</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="backToHomeBtn" type="button" class="btn-primary">Return to Home</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-columns-wrapper">
+                <div class="footer-col footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
+                        <span class="footer-logo-text">GELATO</span>
+                    </a>
+                    <p class="body-text footer-bio">
+                        Crafting artisanal, small-batch gelato with love, premium ingredients, and a whole lot of sweetness. Every scoop tells a delicious story.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook" class="interactive"><i class="ti ti-brand-facebook"></i></a>
+                        <a href="#" aria-label="Instagram" class="interactive"><i class="ti ti-brand-instagram"></i></a>
+                        <a href="#" aria-label="TikTok" class="interactive"><i class="ti ti-brand-tiktok"></i></a>
+                        <a href="#" aria-label="Twitter" class="interactive"><i class="ti ti-brand-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Link</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Classic Gelato</a></li>
+                        <li><a href="#">Fruit Sorbets</a></li>
+                        <li><a href="#">Nutty Delights</a></li>
+                        <li><a href="#">Vegan Flavors</a></li>
+                        <li><a href="#">Specialty Drops</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-contact-col">
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-contact-list">
+                        <li><i class="ti ti-map-pin"></i> <span>St 909, Toul Kork, Phnom Penh</span></li>
+                        <li><i class="ti ti-phone"></i> <span>+855 234-657-890</span></li>
+                        <li><i class="ti ti-mail"></i> <span>gelatocambodia@gmail.com</span></li>
+                        <li><i class="ti ti-clock"></i> <span>Mon–Sun: 9am–9pm</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="caption">&copy; 2026 Gelato Cambodia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/cart.js"></script>
+</body>
+</html>

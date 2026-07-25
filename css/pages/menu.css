@@ -1,17 +1,6 @@
         /* ==========================================
-           CSS Variables & Base Reset
+           Base Reset (color variables come from css/global.css)
            ========================================== */
-        :root {
-            --primary: #b04358;
-            --primary-hover: #9c364c;
-            --accent-pink: #f8bbd0;
-            --border-gray: #EAEAEA;
-            --text-main: #2E2E2E;
-            --text-high-contrast: #1E1E1E;
-            --text-sub: #7A7A7A;
-            --text-sub-dark: #666666;
-        }
-
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -410,11 +399,20 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .menu-hero h1 {
+                font-size: 52px;
+            }
             .menu-hero .hero-image-content {
                 display: none;
             }
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-hero h1 {
+                font-size: 42px;
             }
         }
 

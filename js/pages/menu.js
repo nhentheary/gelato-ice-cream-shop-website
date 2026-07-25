@@ -2,10 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const productsGrid = document.getElementById('productsGrid');
     const paginationContainer = document.getElementById('paginationContainer');
     const catTabs = document.querySelectorAll('.cat-tab');
-    const cartBadge = document.querySelector('.cart-badge');
-
-    let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
-    updateCartBadge(cartCount);
+    if (window.CartStore) window.CartStore.updateBadge();
 
     const productsData = [
         { id: 1, category: "best-sellers", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80", title: "Strawberry Bliss", rating: "5.0 (1,420 orders)", star: true, price: "$5.50" },
@@ -66,13 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentCategory = 'best-sellers';
     let currentPage = 1;
     const itemsPerPage = 5;
-
-    function updateCartBadge(count) {
-        if (cartBadge) {
-            cartBadge.textContent = count;
-            cartBadge.style.display = count > 0 ? 'inline-block' : 'none';
-        }
-    }
 
     function renderProducts() {
         if (!productsGrid) return;
@@ -162,18 +152,20 @@ document.addEventListener('DOMContentLoaded', () => {
         cartButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                
+
                 if (btn.classList.contains('added')) {
                     window.location.href = 'cart.html';
                     return;
                 }
 
+                const productId = btn.getAttribute('data-id');
+                const product = productsData.find(p => String(p.id) === String(productId));
+                if (product && window.CartStore) {
+                    window.CartStore.addItem(product, 1);
+                }
+
                 btn.classList.add('added');
                 btn.innerHTML = `<i class="ti ti-check"></i> Added`;
-
-                cartCount++;
-                updateCartBadge(cartCount);
-                localStorage.setItem('cartCount', cartCount);
             });
         });
     }
@@ -186,14 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentPage = 1;
             renderProducts();
         });
-    });
-
-    // Listen to localStorage changes across browser tabs/pages for real-time badge sync
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'cartCount') {
-            cartCount = parseInt(e.newValue) || 0;
-            updateCartBadge(cartCount);
-        }
     });
 
     renderProducts();

@@ -1,26 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 0. Cart Badge Management & Synchronization
+    // (actual cart storage now lives in CartStore, shared across pages)
     // ==========================================
-    const cartBadge = document.getElementById('cartBadge') || document.querySelector('.cart-badge');
-    
-    function updateCartBadge(count) {
-        if (cartBadge) {
-            cartBadge.textContent = count;
-            cartBadge.style.display = count > 0 ? 'inline-block' : 'none';
-        }
-    }
-
-    let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
-    updateCartBadge(cartCount);
-
-    // Sync across tabs/pages
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'cartCount') {
-            cartCount = parseInt(e.newValue) || 0;
-            updateCartBadge(cartCount);
-        }
-    });
+    if (window.CartStore) window.CartStore.updateBadge();
 
     // ==========================================
     // 1. Hero Section Slideshow
@@ -127,10 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
             // Prevent multiple rapid clicks while active
             if (this.classList.contains("added")) return;
 
-            // Increment cart counter and update storage/badge
-            cartCount += 1;
-            updateCartBadge(cartCount);
-            localStorage.setItem('cartCount', cartCount);
+            // Pull the product's actual info from its card and save it
+            // to the shared cart (so it really shows up on cart.html).
+            const card = this.closest('.bestseller-card') || this.closest('.product-card') || this.parentElement;
+            const title = card.querySelector('.product-name, h3')?.textContent.trim() || 'Ice Cream Item';
+            const priceText = card.querySelector('.current-price, .price')?.textContent || '$5.50';
+            const imgSrc = card.querySelector('img')?.src || '';
+
+            if (window.CartStore) {
+                window.CartStore.addItem({ id: title, title, price: priceText, img: imgSrc }, 1);
+            }
 
             // Save original HTML content (icon + text)
             const originalHTML = this.innerHTML;

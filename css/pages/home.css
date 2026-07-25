@@ -1035,7 +1035,7 @@
     font-family: 'Baloo 2', cursive;
     font-size: 20px;
     font-weight: 600;
-    color: var(--primary, #C84B59);
+    color: var(--primary);
     display: block;
     margin-bottom: 4px;
     letter-spacing: 0.5px;
@@ -1091,7 +1091,7 @@
 
 /* Star Rating */
 .star-rating {
-    color: var(--primary-hover, #C84B59); 
+    color: var(--primary-hover); 
     font-size: 18px;
     letter-spacing: 2px;
     margin-bottom: 20px;
@@ -1142,7 +1142,7 @@
 
 /* Carousel Arrow Navigation Buttons */
 .carousel-arrow {
-    background-color: var(--primary, #C84B59);
+    background-color: var(--primary);
     color: #FFFFFF;
     border: none;
     width: 45px;
@@ -1183,7 +1183,7 @@
 .dot.active {
     width: 10px; 
     border-radius: 50%; 
-    background-color: var(--primary, #C84B59);
+    background-color: var(--primary);
     transform: scale(1.2); 
 }
 

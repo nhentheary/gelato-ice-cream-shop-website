@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GELATO - My Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/components/footer.css">
+    <link rel="stylesheet" href="css/components/cards.css">
+    <link rel="stylesheet" href="css/pages/account.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="assets/images/logo/GELATO-Logo.png" alt="" class="navbar-logo-icon">
+                <span class="navbar-logo-text">GELATO</span>
+            </a>
+
+            <div class="navbar-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="navbar-icons">
+                <div class="navbar-search">
+                    <input type="text" placeholder="Search...">
+                    <i class="ti ti-search"></i>
+                </div>
+                <a href="cart.html" style="position:relative;">
+                    <i class="ti ti-shopping-cart"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </a>
+                <a href="account.html">
+                    <div class="navbar-profile">
+                        <i class="ti ti-user"></i>
+                    </div>
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Shown briefly / if somehow reached while logged out before redirect -->
+        <div id="guardState" class="dashboard-guard" style="display:none;">
+            <i class="ti ti-lock" style="font-size:40px; color: var(--accent-pink);"></i>
+            <h2 style="margin-top:12px;">Please log in to view your account</h2>
+            <p class="panel-subtitle" style="margin-top:8px;">Redirecting you to the login page...</p>
+        </div>
+
+        <section class="dashboard-section" id="dashboardState" style="display:none;">
+            <div class="container">
+                <div class="dashboard-grid">
+
+                    <!-- ================= Sidebar ================= -->
+                    <aside class="dashboard-sidebar">
+                        <div class="sidebar-profile">
+                            <div class="sidebar-avatar" id="sidebarAvatar">G</div>
+                            <div class="sidebar-name" id="sidebarName">Guest</div>
+                            <div class="sidebar-email" id="sidebarEmail">guest@example.com</div>
+                        </div>
+
+                        <nav class="sidebar-nav">
+                            <button class="sidebar-nav-btn active" data-panel="myAccountPanel" type="button">
+                                <i class="ti ti-user-circle"></i> My Account
+                            </button>
+                            <button class="sidebar-nav-btn" data-panel="orderHistoryPanel" type="button">
+                                <i class="ti ti-package"></i> Order History
+                            </button>
+                            <button class="sidebar-nav-btn" data-panel="settingsPanel" type="button">
+                                <i class="ti ti-settings"></i> Settings
+                            </button>
+                            <div class="sidebar-nav-divider"></div>
+                            <button class="sidebar-nav-btn logout-btn" id="logoutBtn" type="button">
+                                <i class="ti ti-logout"></i> Log Out
+                            </button>
+                        </nav>
+                    </aside>
+
+                    <!-- ================= Main Content ================= -->
+                    <div class="dashboard-main">
+
+                        <!-- My Account Panel -->
+                        <div class="dashboard-panel active" id="myAccountPanel">
+                            <h2 class="panel-heading">My Account</h2>
+                            <p class="panel-subtitle">Update your personal information below.</p>
+
+                            <div id="accountMessage" class="account-form-message"></div>
+
+                            <form class="account-form" id="accountForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="accFirstName">First Name</label>
+                                        <input type="text" id="accFirstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accLastName">Last Name</label>
+                                        <input type="text" id="accLastName" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="accEmail">Email</label>
+                                    <input type="email" id="accEmail" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="accPhone">Phone Number</label>
+                                    <input type="tel" id="accPhone" placeholder="Add a phone number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="accAddress">Address</label>
+                                    <textarea id="accAddress" rows="3" placeholder="Add a delivery address"></textarea>
+                                </div>
+
+                                <button type="submit" class="account-save-btn">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <!-- Order History Panel -->
+                        <div class="dashboard-panel" id="orderHistoryPanel">
+                            <h2 class="panel-heading">Order History</h2>
+                            <p class="panel-subtitle">A record of everything you've ordered from us.</p>
+
+                            <div class="order-list" id="orderList">
+                                <!-- Orders injected by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Settings Panel -->
+                        <div class="dashboard-panel" id="settingsPanel">
+                            <h2 class="panel-heading">Settings</h2>
+                            <p class="panel-subtitle">Manage your password and preferences.</p>
+
+                            <div class="settings-block">
+                                <h3>Change Password</h3>
+                                <p class="settings-block-desc">Choose a new password with at least 6 characters.</p>
+
+                                <div id="passwordMessage" class="account-form-message"></div>
+
+                                <form class="account-form" id="passwordForm">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label>
+                                        <input type="password" id="currentPassword" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="newPassword">New Password</label>
+                                            <input type="password" id="newPassword" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmNewPassword">Confirm New Password</label>
+                                            <input type="password" id="confirmNewPassword" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="account-save-btn">Update Password</button>
+                                </form>
+                            </div>
+
+                            <div class="settings-block">
+                                <h3>Notifications</h3>
+                                <p class="settings-block-desc">Choose what you'd like to hear from us about.</p>
+
+                                <div class="settings-toggle-row">
+                                    <span class="settings-toggle-label">Email me about new flavors &amp; promotions</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="promoToggle" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================
+    Scoopify Footer Component
+    ========================================= -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-columns-wrapper">
+                <div class="footer-col footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
+                        <span class="footer-logo-text">GELATO</span>
+                    </a>
+                    <p class="body-text footer-bio">
+                        Crafting artisanal, small-batch gelato with love, premium ingredients, and a whole lot of sweetness. Every scoop tells a delicious story.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook" class="interactive"><i class="ti ti-brand-facebook"></i></a>
+                        <a href="#" aria-label="Instagram" class="interactive"><i class="ti ti-brand-instagram"></i></a>
+                        <a href="#" aria-label="TikTok" class="interactive"><i class="ti ti-brand-tiktok"></i></a>
+                        <a href="#" aria-label="Twitter" class="interactive"><i class="ti ti-brand-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Link</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Classic Gelato</a></li>
+                        <li><a href="#">Fruit Sorbets</a></li>
+                        <li><a href="#">Nutty Delights</a></li>
+                        <li><a href="#">Vegan Flavors</a></li>
+                        <li><a href="#">Specialty Drops</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-contact-col">
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-contact-list">
+                        <li><i class="ti ti-map-pin"></i> <span>St 909, Toul Kork, Phnom Penh</span></li>
+                        <li><i class="ti ti-phone"></i> <span>+855 234-657-890</span></li>
+                        <li><i class="ti ti-mail"></i> <span>gelatocambodia@gmail.com</span></li>
+                        <li><i class="ti ti-clock"></i> <span>Mon–Sun: 9am–9pm</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="caption">&copy; 2026 Gelato Cambodia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script src="js/cart-store.js"></script>
+<script src="js/auth-store.js"></script>
+<script src="js/pages/account.js"></script>
+<script src="js/navigation.js"></script>
+
+</html>

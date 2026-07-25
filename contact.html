@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GELATO - Contact</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/resonsive.css">
@@ -60,20 +60,16 @@
         <!-- Contact Hero Section -->
         <section class="contact-hero">
             <div class="container hero-container">
-                <!-- Left Image -->
-                <div class="hero-image-content">
-                    <img src="images/contact-hero-icecream-left.jpg" alt="Delicious Ice Cream Cup with Strawberries">
-                </div>
-
-                <!-- Center Text Content (No Buttons) -->
                 <div class="hero-text-content">
                     <h1>Reach Out <span class="title-3d">To Us</span></h1>                    
                     <p class="hero-description">Have questions, feedback, or want to book us for an event? Drop us a line and let's make your day a little sweeter.</p>
+                    <div class="hero-buttons">
+                        <a href="#contactForm" class="btn btn-primary">Send a Message</a>
+                        <a href="#visitUs" class="btn btn-secondary">Visit Us</a>
+                    </div>
                 </div>
-
-                <!-- Right Image -->
                 <div class="hero-image-content">
-                    <img src="images/contact-hero-icecream-right.jpg" alt="Delicious Ice Cream Cup with Strawberries">
+                    <img src="assets/images/hero/home-hero-5.png" alt="Delicious Ice Cream Cup with Strawberries">
                 </div>
             </div>
         </section>
@@ -91,7 +87,7 @@
                 <div class="contact-grid">
                     
                     <!-- Contact Info / Details Column -->
-                    <div class="contact-info-card">
+                    <div class="contact-info-card" id="visitUs">
                         <h3>Get in Touch</h3>
                         <p>We'd love to hear from you! Visit us or drop a message for catering, inquiries, or feedback.</p>
                         
@@ -148,7 +144,7 @@
                     </div>
 
                     <!-- Contact Form Column -->
-                    <div class="contact-form-card">
+                    <div class="contact-form-card" id="contactForm">
                         <h3>Send Us a Message</h3>
                         <form class="contact-form">
                             <div class="form-group">
@@ -247,6 +243,8 @@
     
 </body>
 
+<script src="js/cart-store.js"></script>
+<script src="js/auth-store.js"></script>
 <script src="js/navigation.js"></script>
 
 </html>

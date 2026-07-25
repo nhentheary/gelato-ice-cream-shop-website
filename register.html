@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GELATO - Services</title>
+    <title>GELATO - Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/resonsive.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/components/buttons.css">
     <link rel="stylesheet" href="css/components/navbar.css">
     <link rel="stylesheet" href="css/components/footer.css">
     <link rel="stylesheet" href="css/components/cards.css">
-    <link rel="stylesheet" href="css/pages/services.css">
+    <link rel="stylesheet" href="css/pages/auth.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -22,11 +22,11 @@
                 <img src="assets/images/logo/GELATO-Logo.png" alt="" class="navbar-logo-icon">
                 <span class="navbar-logo-text">GELATO</span>
             </a>
-            
+
             <div class="navbar-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="menu.html">Menu</a>
-                <a href="services.html" class="active">Services</a>
+                <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -38,7 +38,7 @@
                 </div>
                 <a href="cart.html" style="position:relative;">
                     <i class="ti ti-shopping-cart"></i>
-                    <span class="cart-badge" style="display:inline-block;">0</span>
+                    <span class="cart-badge" id="cartBadge">0</span>
                 </a>
                 <a href="account.html">
                     <div class="navbar-profile">
@@ -54,106 +54,81 @@
     </nav>
 
     <main>
-        <!-- Services Hero Section -->
-        <section class="services-hero">
-            <div class="container hero-container">
-                <div class="hero-text-content">
-                    <h1>Our <span class="title-3d">Services</span></h1>
-                    <p class="hero-description">We make every moment sweeter with our premium ice cream services, from event catering to custom builds delivered right to your door.</p>
-                    <div class="hero-buttons">
-                        <a href="#serviceTabs" class="btn btn-primary">Explore Services</a>
-                        <a href="#bookingForm" class="btn btn-secondary">Book Now</a>
-                    </div>
-                </div>
-                <div class="hero-image-content">
-                    <img src="assets/images/hero/home-hero-4.png" alt="Delicious Ice Cream with Toppings">
-                </div>
-            </div>
-        </section>
+        <section class="auth-section">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-icon-circle"><i class="ti ti-user-plus"></i></div>
+                    <h1>Create Account</h1>
+                    <p class="auth-subtitle">Register to save your info, track orders, and check out faster.</p>
 
-        <!-- Category Tabs + Cards + Booking/Estimate -->
-        <section class="services-booking-section">
-            <div class="container">
+                    <div id="registerMessage" class="auth-form-message"></div>
 
-                <!-- Category Tabs -->
-                <div class="service-tabs" id="serviceTabs">
-                    <button type="button" class="service-tab active" data-category="event">Event Services</button>
-                    <button type="button" class="service-tab" data-category="catering">Catering</button>
-                    <button type="button" class="service-tab" data-category="builder">Builder</button>
-                    <button type="button" class="service-tab" data-category="delivery">Delivery</button>
-                    <button type="button" class="service-tab" data-category="subscription">Subscription</button>
-                    <button type="button" class="service-tab" data-category="workshop">Workshop</button>
-                </div>
-
-                <!-- Category Icon Cards (populated by JS based on active tab) -->
-                <div class="service-category-cards" id="categoryCards"></div>
-
-                <!-- Book & Estimate -->
-                <div class="booking-estimate-grid">
-                    <!-- Left: Booking Form -->
-                    <div class="booking-form-card">
-                        <h3>Book Your Event</h3>
-                        <form id="bookingForm">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="eventType">Event Type</label>
-                                    <select id="eventType"></select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="eventDate">Date</label>
-                                    <input type="date" id="eventDate">
+                    <form class="auth-form" id="registerForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <div class="input-with-icon">
+                                    <i class="ti ti-user"></i>
+                                    <input type="text" id="firstName" placeholder="First name" required>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label for="eventLocation">Location</label>
-                                <input type="text" id="eventLocation" placeholder="Enter Location">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-with-icon">
+                                    <i class="ti ti-user"></i>
+                                    <input type="text" id="lastName" placeholder="Last name" required>
+                                </div>
                             </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <div class="input-with-icon">
+                                <i class="ti ti-mail"></i>
+                                <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerPhone">Phone Number</label>
+                            <div class="input-with-icon">
+                                <i class="ti ti-phone"></i>
+                                <input type="tel" id="registerPhone" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerAddress">Address</label>
+                            <div class="input-with-icon">
+                                <i class="ti ti-map-pin"></i>
+                                <input type="text" id="registerAddress" placeholder="Enter your delivery address">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
                             <div class="form-group">
-                                <label for="guestCount" id="guestCountLabel">Number of Guests</label>
-                                <select id="guestCount"></select>
+                                <label for="registerPassword">Password</label>
+                                <div class="input-with-icon">
+                                    <i class="ti ti-lock"></i>
+                                    <input type="password" id="registerPassword" placeholder="Min. 6 characters" required>
+                                    <i class="ti ti-eye toggle-password" data-target="registerPassword"></i>
+                                </div>
                             </div>
-
                             <div class="form-group">
-                                <label for="specialRequests">Special Requests</label>
-                                <textarea id="specialRequests" placeholder="Write any special requests..."></textarea>
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-with-icon">
+                                    <i class="ti ti-lock"></i>
+                                    <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+                                    <i class="ti ti-eye toggle-password" data-target="confirmPassword"></i>
+                                </div>
                             </div>
-
-                            <button type="submit" class="btn-services-primary btn-block">Get Price Estimate</button>
-                        </form>
-                    </div>
-
-                    <!-- Right: Estimated Price -->
-                    <div class="estimate-card">
-                        <h3>Estimated Price</h3>
-
-                        <div class="estimate-row">
-                            <span>Guests</span>
-                            <span id="estGuests">—</span>
-                        </div>
-                        <div class="estimate-row">
-                            <span>Package</span>
-                            <span id="estPackage">Standard</span>
-                        </div>
-                        <div class="estimate-row">
-                            <span>Price Per Guest</span>
-                            <span id="estPricePerGuest">$0.00</span>
                         </div>
 
-                        <hr>
+                        <button type="submit" class="auth-submit-btn">Create Account</button>
+                    </form>
 
-                        <div class="estimate-row estimate-total-row">
-                            <span>Total</span>
-                            <span id="estTotal">$0.00</span>
-                        </div>
-
-                        <button type="button" id="bookNowBtn" class="btn-services-primary btn-block">Book Now</button>
-
-                        <div id="bookingConfirmation" class="booking-confirmation"></div>
-                    </div>
+                    <p class="auth-switch">Already have an account? <a href="login.html">Log in here</a></p>
                 </div>
-
             </div>
         </section>
     </main>
@@ -163,9 +138,7 @@
     ========================================= -->
     <footer class="footer">
         <div class="container footer-container">
-            <!-- Columns Wrapper for 4-Column Grid Layout -->
             <div class="footer-columns-wrapper">
-                <!-- Col 1: Brand & Bio -->
                 <div class="footer-col footer-brand">
                     <a href="index.html" class="footer-logo">
                         <img src="assets/images/logo/GELATO-Logo.png" alt="Logo" class="footer-logo-icon">
@@ -182,7 +155,6 @@
                     </div>
                 </div>
 
-                <!-- Col 2: Quick Link -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Quick Link</h3>
                     <ul class="footer-links">
@@ -194,7 +166,6 @@
                     </ul>
                 </div>
 
-                <!-- Col 3: Categories -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Categories</h3>
                     <ul class="footer-links">
@@ -206,7 +177,6 @@
                     </ul>
                 </div>
 
-                <!-- Col 4: Contact -->
                 <div class="footer-col footer-contact-col">
                     <h3 class="footer-heading">Contact</h3>
                     <ul class="footer-contact-list">
@@ -219,19 +189,18 @@
             </div>
         </div>
 
-        <!-- Bottom Bar -->
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
                 <p class="caption">&copy; 2026 Gelato Cambodia. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
+
 </body>
 
-<script src="js/navigation.js"></script>
 <script src="js/cart-store.js"></script>
 <script src="js/auth-store.js"></script>
-<script src="js/pages/services.js"></script>
+<script src="js/pages/register.js"></script>
+<script src="js/navigation.js"></script>
 
 </html>

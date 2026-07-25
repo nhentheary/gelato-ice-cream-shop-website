@@ -1,25 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 0. Cart Badge Management & Synchronization
+    // (actual cart storage now lives in CartStore, shared across pages)
     // ==========================================
-    const cartBadge = document.getElementById('cartBadge') || document.querySelector('.cart-badge');
-    
-    function updateCartBadge(count) {
-        if (cartBadge) {
-            cartBadge.textContent = count;
-            cartBadge.style.display = count > 0 ? 'inline-block' : 'none';
-        }
-    }
-
-    let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
-    updateCartBadge(cartCount);
-
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'cartCount') {
-            cartCount = parseInt(e.newValue) || 0;
-            updateCartBadge(cartCount);
-        }
-    });
+    if (window.CartStore) window.CartStore.updateBadge();
 
     // ==========================================
     // 1. Hero Section Slideshow
@@ -111,82 +95,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 4. Add to Cart Button Interactive State (Linked to Real Cart System)
+    // 4. Render the cart page from CartStore (the real, shared cart data)
     // ==========================================
-    const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
+    const cartItemsSection = document.querySelector('.cart-items-section');
 
-    addToCartButtons.forEach(button => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (this.classList.contains("added")) return;
-
-            // Extract item details from the parent card/container
-            const cardElement = this.closest('.bestseller-card') || this.closest('.product-card') || this.parentElement;
-            const title = cardElement.querySelector('h3, .product-title, .bestseller-title')?.textContent || 'Ice Cream Item';
-            const priceText = cardElement.querySelector('.price, .bestseller-price, span')?.textContent || '$5.50';
-            const price = parseFloat(priceText.replace('$', '')) || 5.50;
-            const imgSrc = cardElement.querySelector('img')?.src || 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=200&q=80';
-
-            // Add item to cart DOM list dynamically
-            addItemToCartDOM({ title, price, img: imgSrc, qty: 1 });
-
-            // Increment counter and update storage/badge
-            cartCount += 1;
-            updateCartBadge(cartCount);
-            localStorage.setItem('cartCount', cartCount);
-            updateAllTotals();
-
-            // Button feedback state
-            const originalHTML = this.innerHTML;
-            this.classList.add("added");
-            this.innerHTML = '<i class="ti ti-check"></i> Added!';
-
-            setTimeout(() => {
-                this.classList.remove("added");
-                this.innerHTML = originalHTML;
-            }, 1500);
-        });
-    });
-
-    function addItemToCartDOM(item) {
-        const cartItemsSection = document.querySelector('.cart-items-section');
-        if (!cartItemsSection) return;
-
-        // Check if item already exists in cart list to increment quantity instead of duplicating
-        const existingCards = cartItemsSection.querySelectorAll('.cart-item-card');
-        let found = false;
-        existingCards.forEach(card => {
-            const cardTitle = card.querySelector('.cart-item-title').textContent;
-            if (cardTitle === item.title) {
-                const qtyInput = card.querySelector('.qty-input');
-                qtyInput.value = parseInt(qtyInput.value) + 1;
-                updateCartItemTotal(card);
-                found = true;
-            }
-        });
-
-        if (!found) {
-            const card = document.createElement('div');
-            card.className = 'cart-item-card';
-            card.innerHTML = `
-                <img src="${item.img}" alt="${item.title}" class="cart-item-img">
-                <div class="cart-item-details">
-                    <h4 class="cart-item-title">${item.title}</h4>
-                    <span class="cart-item-price" data-price="${item.price.toFixed(2)}">$${item.price.toFixed(2)}</span>
-                </div>
-                <div class="cart-quantity-controls">
-                    <button class="qty-btn decrease-qty" type="button" aria-label="Decrease quantity">-</button>
-                    <input type="text" class="qty-input" value="${item.qty}" readonly>
-                    <button class="qty-btn increase-qty" type="button" aria-label="Increase quantity">+</button>
-                </div>
-                <div class="cart-item-total">$${(item.price * item.qty).toFixed(2)}</div>
-                <button class="remove-item-btn" type="button" aria-label="Remove item"><i class="ti ti-trash"></i></button>
-            `;
-            cartItemsSection.appendChild(card);
-        }
+    function buildCartItemCard(item) {
+        const card = document.createElement('div');
+        card.className = 'cart-item-card';
+        card.setAttribute('data-id', item.id);
+        card.innerHTML = `
+            <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+            <div class="cart-item-details">
+                <h4 class="cart-item-title">${item.title}</h4>
+                <span class="cart-item-price" data-price="${item.price.toFixed(2)}">$${item.price.toFixed(2)}</span>
+            </div>
+            <div class="cart-quantity-controls">
+                <button class="qty-btn decrease-qty" type="button" aria-label="Decrease quantity">-</button>
+                <input type="text" class="qty-input" value="${item.qty}" readonly>
+                <button class="qty-btn increase-qty" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <div class="cart-item-total">$${(item.price * item.qty).toFixed(2)}</div>
+            <button class="remove-item-btn" type="button" aria-label="Remove item"><i class="ti ti-trash"></i></button>
+        `;
+        return card;
     }
+
+    function renderCartFromStore() {
+        if (!cartItemsSection || !window.CartStore) return;
+        const items = window.CartStore.getItems();
+
+        cartItemsSection.innerHTML = '';
+
+        if (items.length === 0) {
+            cartItemsSection.innerHTML = `
+                <div class="empty-cart-message" style="text-align:center; padding: 40px 20px; color: var(--text-sub);">
+                    <p>Your cart is empty.</p>
+                    <a href="menu.html" class="btn-primary" style="display:inline-block; margin-top: 12px;">Browse the Menu</a>
+                </div>
+            `;
+            return;
+        }
+
+        items.forEach(item => {
+            cartItemsSection.appendChild(buildCartItemCard(item));
+        });
+    }
+
+    renderCartFromStore();
 
     // ==========================================
     // 5. Wishlist Button Toggle States
@@ -398,28 +353,35 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains('increase-qty')) {
             const card = e.target.closest('.cart-item-card');
             const input = card.querySelector('.qty-input');
-            input.value = parseInt(input.value) + 1;
+            const newQty = parseInt(input.value) + 1;
+            input.value = newQty;
             updateCartItemTotal(card);
+            if (window.CartStore) window.CartStore.setQty(card.getAttribute('data-id'), newQty);
             updateAllTotals();
         }
         if (e.target.classList.contains('decrease-qty')) {
             const card = e.target.closest('.cart-item-card');
             const input = card.querySelector('.qty-input');
             if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
+                const newQty = parseInt(input.value) - 1;
+                input.value = newQty;
                 updateCartItemTotal(card);
+                if (window.CartStore) window.CartStore.setQty(card.getAttribute('data-id'), newQty);
                 updateAllTotals();
             }
         }
         if (e.target.closest('.remove-item-btn')) {
             const card = e.target.closest('.cart-item-card');
+            const id = card.getAttribute('data-id');
             card.remove();
-            
-            // Sync cart count down
-            cartCount = Math.max(0, cartCount - 1);
-            updateCartBadge(cartCount);
-            localStorage.setItem('cartCount', cartCount);
-            
+
+            if (window.CartStore) window.CartStore.removeItem(id);
+
+            // Show the empty-cart state if that was the last item
+            if (cartItemsSection && cartItemsSection.querySelectorAll('.cart-item-card').length === 0) {
+                renderCartFromStore();
+            }
+
             updateAllTotals();
         }
     });
@@ -457,6 +419,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
             renderCheckoutReview();
+
+            // Prefill checkout details for a logged-in user, so they don't
+            // have to retype their info every time they order.
+            if (window.AuthStore && window.AuthStore.isLoggedIn()) {
+                const user = window.AuthStore.getCurrentUser();
+                if (user) {
+                    const nameInput = document.getElementById('customerName');
+                    const phoneInput = document.getElementById('customerPhone');
+                    if (nameInput && !nameInput.value) nameInput.value = `${user.firstName} ${user.lastName}`.trim();
+                    if (phoneInput && !phoneInput.value) phoneInput.value = user.phone || '';
+                    if (customerAddressInput && !customerAddressInput.value) customerAddressInput.value = user.address || '';
+                }
+            }
+
             if (cartPage) cartPage.style.display = 'none';
             if (checkoutPage) checkoutPage.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -569,9 +545,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById('receiptFinalTotal').textContent = coFinalTotal.textContent;
 
-            // Clear Cart Storage/Count upon successful order placement
-            localStorage.removeItem('cartCount');
-            updateCartBadge(0);
+            // Save this order to order history (tied to the logged-in
+            // account, or to this device if checking out as a guest).
+            let savedOrder = null;
+            if (window.AuthStore) {
+                const orderItems = Array.from(document.querySelectorAll('.cart-item-card')).map(card => ({
+                    title: card.querySelector('.cart-item-title').textContent,
+                    qty: parseInt(card.querySelector('.qty-input').value, 10) || 1,
+                    price: parseFloat(card.querySelector('.cart-item-price').getAttribute('data-price')) || 0
+                }));
+
+                savedOrder = window.AuthStore.saveOrder({
+                    items: orderItems,
+                    subtotal: calculateSubtotal(),
+                    total: parseFloat(coFinalTotal.textContent.replace(/[^0-9.]/g, '')) || 0,
+                    fulfillmentType: fulfillmentType,
+                    address: fulfillmentType === 'delivery' ? address : '',
+                    paymentMethod: paymentMethod,
+                    customerName: name,
+                    customerPhone: phone
+                });
+            }
+
+            const receiptOrderIdEl = document.getElementById('receiptOrderId');
+            if (receiptOrderIdEl) {
+                receiptOrderIdEl.textContent = savedOrder ? `#${savedOrder.id}` : '#ORD-' + Date.now();
+            }
+
+            // Clear the cart upon successful order placement
+            if (window.CartStore) window.CartStore.clearCart();
 
             if (checkoutPage) checkoutPage.style.display = 'none';
             if (confirmationPage) confirmationPage.style.display = 'block';

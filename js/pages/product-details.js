@@ -99,17 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 4. Cart Badge Management & Synchronization
-    const cartBadge = document.getElementById('cartBadge') || document.querySelector('.cart-badge');
-    
-    function updateCartBadge(count) {
-        if (cartBadge) {
-            cartBadge.textContent = count;
-            cartBadge.style.display = count > 0 ? 'inline-block' : 'none';
-        }
-    }
-
-    let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
-    updateCartBadge(cartCount);
+    if (window.CartStore) window.CartStore.updateBadge();
 
     // 5. Add to Cart Behavior (Normal state without redirection)
     const addToCartBtn = document.getElementById("detailAddToCartBtn");
@@ -120,9 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
         addToCartBtn.addEventListener("click", () => {
             const quantityToAdd = parseInt(quantityInput ? quantityInput.value : 1) || 1;
 
-            cartCount += quantityToAdd;
-            updateCartBadge(cartCount);
-            localStorage.setItem('cartCount', cartCount);
+            if (window.CartStore) {
+                window.CartStore.addItem(currentProduct, quantityToAdd);
+            }
 
             // Show success feedback temporarily, then revert back to normal
             addToCartBtn.classList.add("active");
@@ -135,11 +125,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Listen to storage changes across pages for real-time updates
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'cartCount') {
-            cartCount = parseInt(e.newValue) || 0;
-            updateCartBadge(cartCount);
-        }
-    });
 });

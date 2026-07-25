@@ -256,6 +256,8 @@
             max-width: 85%;
             max-height: 85%;
             object-fit: contain;
+            background: transparent;
+            mix-blend-mode: multiply;
             transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
         }
 

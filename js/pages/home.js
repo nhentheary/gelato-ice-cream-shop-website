@@ -168,63 +168,63 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             rating: "★★★★★",
             text: "The ice cream is so fresh and delicious! My family loves it.",
-            avatar: "images/customer-1.jpg",
+            avatar: "https://i.pinimg.com/736x/73/85/d6/7385d60c7a168fd851ee08ee6eb3cb76.jpg",
             name: "Sreyneang P.",
             location: "Phnom Penh"
         },
         {
             rating: "★★★★★",
             text: "Best ice cream I've ever had! Creamy, rich, and perfect.",
-            avatar: "images/customer-2.jpg",
+            avatar: "https://i.pinimg.com/736x/57/04/cb/5704cb74000de0d7fd1342902f8c34c6.jpg",
             name: "Dara K.",
             location: "Siem Reap"
         },
         {
             rating: "★★★★★",
             text: "Their event service made my birthday so special!",
-            avatar: "images/customer-3.jpg",
+            avatar: "https://i.pinimg.com/control1/1200x/ba/67/b1/ba67b11da61ad3235440088861f0a429.jpg",
             name: "Rathana M.",
             location: "Battambang"
         },
         {
             rating: "★★★★★",
             text: "Absolute favorite spot in town! Great flavors and ambiance.",
-            avatar: "images/customer-4.jpg",
+            avatar: "https://i.pinimg.com/control1/1200x/fa/cc/68/facc68451edd099b3ad9af0f581b7815.jpg",
             name: "Chan Thy",
             location: "Kampot"
         },
         {
             rating: "★★★★★",
             text: "Super friendly staff and the kids love the chocolate scoops.",
-            avatar: "images/customer-5.jpg",
+            avatar: "https://i.pinimg.com/736x/9d/68/ad/9d68ad5f7b020c48f2ca01c1a1eae553.jpg",
             name: "Vichea S.",
             location: "Takéo"
         },
         {
             rating: "★★★★★",
             text: "Clean, fast service, and the quality is consistently top-notch.",
-            avatar: "images/customer-6.jpg",
+            avatar: "https://i.pinimg.com/736x/6e/6c/a6/6e6ca6568670979e3f27d40d8b1bd281.jpg",
             name: "Bopha N.",
             location: "Sihanoukville"
         },
         {
             rating: "★★★★★",
             text: "The seasonal fruit flavors are incredible. Highly recommend!",
-            avatar: "images/customer-7.jpg",
+            avatar: "https://i.pinimg.com/control1/1200x/6b/8d/55/6b8d557af9e7122dbd7eec1c2593232b.jpg",
             name: "Vanna R.",
             location: "Kandal"
         },
         {
             rating: "★★★★★",
             text: "A wonderful place to chill out with friends on a hot afternoon.",
-            avatar: "images/customer-8.jpg",
-            name: "Sophea K.",
+            avatar: "https://i.pinimg.com/736x/55/7a/ae/557aaee4e55f066f5b072c8efe3b82f4.jpg",
+            name: "SopheaK K.",
             location: "Kampong Cham"
         },
         {
             rating: "★★★★★",
             text: "Extremely satisfying portions and gorgeous presentation.",
-            avatar: "images/customer-9.jpg",
+            avatar: "https://i.pinimg.com/control1/1200x/84/f5/d6/84f5d6166c40cd6cd5a253ed19fae994.jpg",
             name: "Chenda L.",
             location: "Prey Veng"
         }

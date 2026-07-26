@@ -582,12 +582,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (backToHomeBtn) {
-        backToHomeBtn.addEventListener('click', () => {
-            if (confirmationPage) confirmationPage.style.display = 'none';
-            if (cartPage) cartPage.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+    backToHomeBtn.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+}
 
     updateAllTotals();
 });

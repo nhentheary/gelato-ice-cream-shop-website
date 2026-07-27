@@ -251,7 +251,7 @@ This project was completed as an **individual project** under the **Sister of Co
 Special thanks to:
 
 * **Vin Sophannary** — Project Lead (Instructor)
- **Eang Sreynich** — Mentor
+* **Eang Sreynich** — Mentor
 
 Their guidance, encouragement, and feedback were invaluable throughout the planning, development, and completion of this project.
 

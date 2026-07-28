@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             panels.forEach(p => p.classList.toggle('active', p.id === targetId));
 
             if (targetId === 'orderHistoryPanel') renderOrders();
+            if (targetId === 'wishlistPanel') renderWishlist();
         });
     });
 
@@ -129,6 +130,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     renderOrders();
+
+    // ---------- Wishlist ----------
+    const wishlistList = document.getElementById('wishlistList');
+
+    function renderWishlist() {
+        if (!wishlistList || !window.WishlistStore) return;
+        const items = window.WishlistStore.getItems();
+
+        if (!items.length) {
+            wishlistList.innerHTML = `
+                <div class="empty-state">
+                    <i class="ti ti-heart"></i>
+                    <p>You haven't saved any favorites yet.</p>
+                    <a href="menu.html" class="btn btn-primary" style="margin-top:14px;">Browse the Menu</a>
+                </div>
+            `;
+            return;
+        }
+
+        wishlistList.innerHTML = items.map(item => `
+            <div class="wishlist-card" data-id="${item.id}">
+                <img src="${item.img}" alt="${item.title}" class="wishlist-item-img">
+                <div class="wishlist-item-details">
+                    <h4 class="wishlist-item-title">${item.title}</h4>
+                    <span class="wishlist-item-price">${typeof item.price === 'number' ? '$' + item.price.toFixed(2) : item.price}</span>
+                </div>
+                <div class="wishlist-item-actions">
+                    <button type="button" class="wishlist-move-to-cart-btn" data-id="${item.id}">
+                        <i class="ti ti-shopping-cart-plus"></i> Add to Cart
+                    </button>
+                    <button type="button" class="wishlist-remove-btn" data-id="${item.id}" aria-label="Remove from wishlist">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        wishlistList.querySelectorAll('.wishlist-remove-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                window.WishlistStore.remove(id);
+                renderWishlist();
+            });
+        });
+
+        wishlistList.querySelectorAll('.wishlist-move-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                const item = items.find(i => String(i.id) === String(id));
+                if (item && window.CartStore) {
+                    window.CartStore.addItem(item, 1);
+                    if (window.showToast) window.showToast(`${item.title} added to cart`, 'success');
+                }
+            });
+        });
+    }
 
     // ---------- Settings: change password ----------
     const passwordForm = document.getElementById('passwordForm');

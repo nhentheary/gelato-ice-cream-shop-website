@@ -80,6 +80,9 @@
                             <button class="sidebar-nav-btn" data-panel="orderHistoryPanel" type="button">
                                 <i class="ti ti-package"></i> Order History
                             </button>
+                            <button class="sidebar-nav-btn" data-panel="wishlistPanel" type="button">
+                                <i class="ti ti-heart"></i> Wishlist
+                            </button>
                             <button class="sidebar-nav-btn" data-panel="settingsPanel" type="button">
                                 <i class="ti ti-settings"></i> Settings
                             </button>
@@ -138,6 +141,16 @@
 
                             <div class="order-list" id="orderList">
                                 <!-- Orders injected by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Wishlist Panel -->
+                        <div class="dashboard-panel" id="wishlistPanel">
+                            <h2 class="panel-heading">My Wishlist</h2>
+                            <p class="panel-subtitle">Gelato and treats you've saved for later.</p>
+
+                            <div class="wishlist-list" id="wishlistList">
+                                <!-- Wishlist items injected by JS -->
                             </div>
                         </div>
 
@@ -258,6 +271,9 @@
 
 <script src="js/cart-store.js"></script>
 <script src="js/auth-store.js"></script>
+<script src="js/products-data.js"></script>
+<script src="js/wishlist-store.js"></script>
+<script src="js/toast.js"></script>
 <script src="js/pages/account.js"></script>
 <script src="js/navigation.js"></script>
 

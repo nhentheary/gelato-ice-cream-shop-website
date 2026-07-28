@@ -37,6 +37,17 @@
         badge.style.display = count > 0 ? 'inline-block' : 'none';
     }
 
+    // Briefly bounces the cart badge — called whenever an item is added, so the
+    // "🛒 1 → 2" change actually catches the eye instead of updating silently.
+    function bumpBadge() {
+        const badge = document.getElementById('cartBadge') || document.querySelector('.cart-badge');
+        if (!badge) return;
+        badge.classList.remove('bump');
+        // Force reflow so re-adding the class restarts the animation.
+        void badge.offsetWidth;
+        badge.classList.add('bump');
+    }
+
     // Adds a product to the cart, merging quantity if it's already there.
     // product = { id, title, price, img }, price may be a number or a "$4.50" string.
     function addItem(product, qty) {
@@ -59,6 +70,7 @@
             });
         }
         saveItems(items);
+        bumpBadge();
         return items;
     }
 
@@ -86,6 +98,7 @@
         saveItems,
         getCount,
         updateBadge,
+        bumpBadge,
         addItem,
         removeItem,
         setQty,

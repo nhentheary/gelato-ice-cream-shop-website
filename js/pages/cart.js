@@ -128,9 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (items.length === 0) {
             cartItemsSection.innerHTML = `
-                <div class="empty-cart-message" style="text-align:center; padding: 40px 20px; color: var(--text-sub);">
-                    <p>Your cart is empty.</p>
-                    <a href="menu.html" class="btn-primary" style="display:inline-block; margin-top: 12px;">Browse the Menu</a>
+                <div class="empty-cart-message">
+                    <span class="empty-cart-emoji">🍦</span>
+                    <p>Your cart is feeling lonely.</p>
+                    <span class="empty-cart-subtext">Browse our delicious gelato and add something sweet.</span>
+                    <a href="menu.html" class="btn-primary">Browse the Menu</a>
                 </div>
             `;
             return;

@@ -68,6 +68,10 @@
     <!-- Category Navigation Wrapper -->
     <div class="category-nav-wrapper">
         <div class="category-nav-container" role="tablist">
+            <button class="cat-tab" data-category="all" role="tab">
+                <div class="cat-icon-circle"><i class="ti ti-apps"></i></div>
+                <span>All</span>
+            </button>
             <button class="cat-tab active" data-category="best-sellers" role="tab">
                 <div class="cat-icon-circle"><i class="ti ti-flame"></i></div>
                 <span>Best Sellers</span>
@@ -97,6 +101,15 @@
 
     <!-- Main Content Section -->
     <main class="section-wrapper">
+        <!-- Product Search Box -->
+        <div class="menu-search-box">
+            <i class="ti ti-search"></i>
+            <input type="text" id="menuSearchInput" placeholder="Search for gelato, sundaes, cakes...">
+            <button type="button" id="menuSearchClear" class="menu-search-clear" aria-label="Clear search" style="display:none;">
+                <i class="ti ti-x"></i>
+            </button>
+        </div>
+
         <!-- Products Grid Container -->
         <div id="productsGrid" class="products-grid">
             <!-- Dynamically populated items appear here -->
@@ -107,6 +120,26 @@
             <!-- Dynamically populated pagination buttons appear here -->
         </div>
     </main>
+
+    <!-- Quick View Modal -->
+    <div id="quickViewOverlay" class="quick-view-overlay">
+        <div class="quick-view-modal">
+            <button type="button" class="quick-view-close" id="quickViewClose" aria-label="Close quick view"><i class="ti ti-x"></i></button>
+            <div class="quick-view-img-box">
+                <img id="quickViewImg" src="" alt="">
+            </div>
+            <div class="quick-view-info">
+                <h3 id="quickViewTitle"></h3>
+                <div class="product-rating" id="quickViewRating"></div>
+                <div class="current-price" id="quickViewPrice"></div>
+                <p id="quickViewDesc" class="quick-view-desc"></p>
+                <div class="quick-view-actions">
+                    <button class="add-to-cart-btn" id="quickViewAddToCart"><i class="ti ti-shopping-cart-plus"></i> Add to Cart</button>
+                    <a href="#" id="quickViewFullDetails" class="btn-secondary">View Full Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container footer-container">
@@ -171,6 +204,9 @@
     <script src="js/navigation.js"></script>
     <script src="js/cart-store.js"></script>
 <script src="js/auth-store.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/wishlist-store.js"></script>
+    <script src="js/toast.js"></script>
     <script src="js/pages/menu.js"></script>
 </body>
 </html>

@@ -65,6 +65,10 @@
             <div class="product-detail-card">
                 <!-- Product Image -->
                 <div class="product-detail-img-box">
+                    <span id="detailBadge" class="card-badge" style="display:none;"></span>
+                    <button class="wishlist-btn" id="detailWishlistBtn" aria-label="Save to Wishlist">
+                        <i class="ti ti-heart"></i>
+                    </button>
                     <img src="" alt="" class="product-detail-img">
                 </div>
 
@@ -116,6 +120,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- You May Also Like -->
+            <section class="you-may-like-section">
+                <h2 class="you-may-like-heading">You May Also Like</h2>
+                <div id="relatedProductsGrid" class="products-grid">
+                    <!-- Populated dynamically with related products -->
+                </div>
+            </section>
         </div>
     </main>
 
@@ -183,6 +195,9 @@
     <script src="js/navigation.js"></script>
     <script src="js/cart-store.js"></script>
 <script src="js/auth-store.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/wishlist-store.js"></script>
+    <script src="js/toast.js"></script>
     <script src="js/pages/product-details.js"></script>
 </body>
 </html>
